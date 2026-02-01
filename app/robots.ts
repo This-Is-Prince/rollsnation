@@ -1,12 +1,14 @@
 import { MetadataRoute } from 'next'
 
 export default function robots(): MetadataRoute.Robots {
+  const baseUrl = 'https://rollsnationindia.in'
+
   return {
     rules: {
       userAgent: '*',
       allow: '/',
-      disallow: '/private/',
+      disallow: ['/private/', '/admin/', '/api/'],
     },
-    sitemap: 'https://rollsnation.in/sitemap.xml',
+    sitemap: `${baseUrl}/sitemap.xml`,
   }
 }
