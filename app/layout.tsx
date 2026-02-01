@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     siteName: 'Rolls Nation',
     images: [
       {
-        url: 'https://rollsnationindia.in/og-image.jpg',
+        url: '/rollsnation.jpeg',
         width: 1200,
         height: 630,
         alt: 'Rolls Nation Franchise',
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Rolls Nation Franchise',
     description: 'Join the fastest growing Kathi Roll franchise network in India.',
-    images: ['https://rollsnationindia.in/og-image.jpg'],
+    images: ['/rollsnation.jpeg'],
   },
   robots: {
     index: true,
@@ -75,7 +75,7 @@ export default function RootLayout({
     '@context': 'https://schema.org',
     '@type': 'Restaurant',
     name: 'Rolls Nation',
-    image: 'https://rollsnationindia.in/og-image.jpg',
+    image: '/rollsnation.jpeg',
     '@id': 'https://rollsnationindia.in',
     url: 'https://rollsnationindia.in',
     telephone: '+917696833321',

@@ -12,7 +12,7 @@ export default function HomePage() {
         {/* Background Image Overlay */}
         <div className="absolute inset-0 z-0">
           <Image 
-            src="https://rollsnation.in/wp-content/uploads/2022/03/rolls-768x952.png" // Placeholder for your burger/roll image
+            src="/rollsnation.jpeg" // Placeholder for your burger/roll image
             alt="Rolls Nation Background"
             fill
             className="object-cover opacity-50"
@@ -44,7 +44,7 @@ export default function HomePage() {
           <div className="hidden md:block relative h-150 w-full animate-in fade-in slide-in-from-right-10 duration-1000">
              {/* Replace with your specific 'Three Rolls' png */}
              <Image 
-               src="https://rollsnation.in/wp-content/uploads/2022/05/S-Logo.png" 
+               src="/chef.png" 
                alt="Delicious Rolls" 
                fill 
                className="object-contain drop-shadow-2xl" 
