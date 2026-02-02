@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Contact Rolls Nation',
     description: 'Call us at +91-76968-33321 or visit our head office in Khanna, Punjab.',
-    url: 'https://rollsnation.in/contact',
+    url: 'https://rollsnationindia.in/contact',
   },
 };
 
