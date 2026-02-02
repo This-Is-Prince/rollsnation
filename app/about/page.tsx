@@ -167,7 +167,7 @@ export default function AboutPage() {
                                 src={item.url}
                                 alt={item.name}
                                 fill
-                                className="object-cover transition-transform duration-500 group-hover:scale-110 grayscale group-hover:grayscale-0"
+                                className="object-cover transition-transform duration-500 group-hover:scale-110"
                                 sizes="(max-width: 768px) 100vw, 25vw"
                             />
                         </div>

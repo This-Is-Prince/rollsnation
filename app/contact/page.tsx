@@ -109,7 +109,7 @@ export default function ContactPage() {
         </div>
       </div>
 
-        <div className="h-100 w-full bg-zinc-900 border-t border-zinc-800 grayscale hover:grayscale-0 transition-all duration-700">
+        <div className="h-100 w-full bg-zinc-900 border-t border-zinc-800 transition-all duration-700">
             <iframe
                 width="100%"
                 height="100%"
