@@ -65,12 +65,12 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
-}
+};
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -117,9 +117,10 @@ export default function RootLayout({
       "https://www.linkedin.com/company/rolls-nation",
       "https://www.youtube.com/@rollsnationindia"
     ],
-  }
+  };
+
   return (
-    <html lang="en">
+    <html lang="en" className="scroll-smooth">
       <head>
         <script
           type="application/ld+json"
@@ -127,16 +128,20 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-black text-white min-h-screen flex flex-col`}
       >
         <AppCheckProvider>
-          <header className="fixed top-0 left-0 w-full z-50">
+          <header className="fixed top-0 left-0 right-0 z-50">
             <TopBar />
             <Navbar />
           </header>
-          <main>
+          
+          <div className="h-20 lg:h-34" aria-hidden="true" />
+          
+          <main className="flex-1">
             {children}
           </main>
+          
           <Footer />
         </AppCheckProvider>
       </body>
