@@ -24,8 +24,8 @@ const app = getApps().length > 0 ? getApp() : initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 const storage = getStorage(app);
-const analytics = getAnalytics(app);
 
+const analytics = typeof window !== 'undefined' ? getAnalytics(app) : undefined;
 let appCheck: AppCheck | undefined;
 
 export const initFirebaseAppCheck = () => {

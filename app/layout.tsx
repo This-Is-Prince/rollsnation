@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { AppCheckProvider } from "@/src/context/AppCheckContext";
 import TopBar from '@/components/TopBar';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -128,14 +129,16 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <header className="fixed top-0 left-0 w-full z-50">
-           <TopBar />
-           <Navbar />
-        </header>
-        <main>
-          {children}
-        </main>
-        <Footer />
+        <AppCheckProvider>
+          <header className="fixed top-0 left-0 w-full z-50">
+            <TopBar />
+            <Navbar />
+          </header>
+          <main>
+            {children}
+          </main>
+          <Footer />
+        </AppCheckProvider>
       </body>
     </html>
   );
