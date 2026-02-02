@@ -6,7 +6,6 @@ export default function Footer() {
     <footer className="bg-black text-white pt-20 pb-10 border-t border-zinc-900">
       <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12">
         
-        {/* Brand Column */}
         <div>
            <h2 className="text-3xl font-black text-yellow-500 italic mb-6">ROLLS NATION</h2>
            <p className="text-zinc-400 text-sm leading-relaxed">
@@ -14,7 +13,6 @@ export default function Footer() {
            </p>
         </div>
 
-        {/* Location Column */}
         <div>
           <h4 className="text-yellow-500 font-bold mb-6 uppercase tracking-wider">Location</h4>
           <div className="space-y-4 text-zinc-300 text-sm">
@@ -35,7 +33,6 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Contact Column */}
         <div>
           <h4 className="text-yellow-500 font-bold mb-6 uppercase tracking-wider">Phone & Email</h4>
           <div className="space-y-4 text-zinc-300 text-sm">
@@ -58,7 +55,6 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Follow Us Column */}
         <div>
           <h4 className="text-yellow-500 font-bold mb-6 uppercase tracking-wider">Follow Us</h4>
           <div className="flex space-x-3">

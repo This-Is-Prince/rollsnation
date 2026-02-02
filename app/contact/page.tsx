@@ -110,16 +110,6 @@ export default function ContactPage() {
       </div>
 
         <div className="h-100 w-full bg-zinc-900 border-t border-zinc-800 grayscale hover:grayscale-0 transition-all duration-700">
-            {/* <iframe 
-                width="100%" 
-                height="100%" 
-                style={{ border: 0 }} 
-                loading="lazy" 
-                allowFullScreen
-                referrerPolicy="no-referrer-when-downgrade"
-                src="https://maps.google.com/maps?q=S.C.O%2035%2C%20Celebration%20Bazar%2C%20G.T%20Road%20Khanna%2C%20Ludhiana%2C%20Punjab%20141401&t=&z=15&ie=UTF8&iwloc=&output=embed"
-                title="Rolls Nation Location"
-            ></iframe> */}
             <iframe
                 width="100%"
                 height="100%"
