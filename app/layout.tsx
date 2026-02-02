@@ -136,7 +136,7 @@ export default function RootLayout({
             <Navbar />
           </header>
           
-          <div className="h-20 lg:h-34" aria-hidden="true" />
+          {/* <div className="h-20 lg:h-34" aria-hidden="true" /> */}
           
           <main className="flex-1">
             {children}

@@ -58,7 +58,7 @@ export default function Navbar() {
         className={`w-full transition-all duration-500 ease-out ${
           isScrolled 
             ? 'bg-zinc-950/95 backdrop-blur-xl shadow-2xl shadow-black/50' 
-            : 'bg-linear-to-b from-black/80 to-transparent'
+            : 'bg-zinc-950/95'
         }`}
       >
         <div className="container mx-auto px-4 lg:px-6">
