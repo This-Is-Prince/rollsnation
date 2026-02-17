@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import type { Metadata } from 'next';
 import { ArrowRight, BadgeIndianRupee, Building2, Clock3, Handshake, Landmark, MapPin, Rocket, ShieldCheck, Store, Users } from 'lucide-react';
 
@@ -6,10 +7,10 @@ const franchiseModels = [
     name: 'Model A - Food Court / Take Away',
     details: [
       { label: 'Min Area Req', value: '150-200 sq. ft' },
-      { label: 'Total Investment', value: 'INR 10 lacs' },
+      { label: 'Total Investment', value: 'INR 9 lacs' },
       { label: 'Franchise Fee', value: 'INR 3 lacs (included in total investment)' },
-      { label: 'Payback Period', value: '10-11 months' },
-      { label: 'Mode of Operations', value: 'FOCO / FOFO' },
+      { label: 'Payback Period', value: '9-10 months' },
+      { label: 'Mode of Operations', value: 'FOFO' },
       { label: 'Agreement Term', value: '5 years' },
     ],
   },
@@ -17,10 +18,10 @@ const franchiseModels = [
     name: 'Model B - Dine-In Restaurant',
     details: [
       { label: 'Min Area Req', value: '450-500 sq. ft' },
-      { label: 'Total Investment', value: 'INR 16 lacs' },
+      { label: 'Total Investment', value: 'INR 15 lacs' },
       { label: 'Franchise Fee', value: 'INR 3 lacs (included in total investment)' },
-      { label: 'Payback Period', value: '17-18 months' },
-      { label: 'Mode of Operations', value: 'FOCO / FOFO' },
+      { label: 'Payback Period', value: '14-15 months' },
+      { label: 'Mode of Operations', value: 'FOFO' },
       { label: 'Agreement Term', value: '5 years' },
     ],
   },
@@ -30,8 +31,8 @@ const franchiseModels = [
       { label: 'Min Area Req', value: '150-500 sq. ft' },
       { label: 'Total Investment', value: 'After site visit' },
       { label: 'Franchise Fee', value: 'INR 3 lacs' },
-      { label: 'Payback Period', value: '8-14 months' },
-      { label: 'Mode of Operations', value: 'FOCO / FOFO' },
+      { label: 'Payback Period', value: '6-14 months' },
+      { label: 'Mode of Operations', value: 'FOFO' },
       { label: 'Agreement Term', value: '5 years' },
     ],
   },
@@ -49,7 +50,7 @@ const supportItems = [
     icon: Building2,
   },
   {
-    title: 'Staff Training',
+    title: 'Skilled man power',
     description: 'Comprehensive onboarding and training programs for kitchen and service staff.',
     icon: Users,
   },
@@ -189,55 +190,57 @@ export default function FranchisePage() {
 
       <section className="border-b border-zinc-800 py-20">
         <div className="container mx-auto max-w-6xl px-6">
-          <div className="rounded-3xl border border-yellow-500/30 bg-linear-to-r from-yellow-500/15 to-zinc-900 p-8 md:p-12">
-            <p className="text-base font-bold uppercase tracking-[0.2em] text-yellow-500 md:text-lg">Rolls Nation Presence 2025</p>
-            <h2 className="mt-4 text-2xl font-black uppercase text-white md:text-4xl">Growing Across India</h2>
-            <p className="mt-6 text-lg font-bold uppercase leading-relaxed text-zinc-100">
-              Now presence in 10+ states / UT with 48+ cities and 58+ outlets across India.
-            </p>
-            <p className="mt-4 text-sm font-semibold uppercase tracking-wide text-zinc-300 md:text-base">
-              Planning to cross 100+ outlet milestone by 2025.
-            </p>
-          </div>
-        </div>
-      </section>
+          <div className="relative overflow-hidden rounded-3xl border border-yellow-500/30 bg-zinc-950 px-5 py-10 md:px-10 md:py-14">
+            <div className="absolute -left-16 -top-20 h-52 w-52 rounded-full bg-yellow-500/10 blur-3xl" />
+            <div className="absolute -bottom-24 -right-16 h-56 w-56 rounded-full bg-blue-500/10 blur-3xl" />
 
-      <section className="border-b border-zinc-800 py-20">
-        <div className="container mx-auto max-w-5xl px-6">
-          <p className="text-base font-bold uppercase tracking-[0.2em] text-yellow-500 md:text-lg">Founder&apos;s Note</p>
-          <h2 className="mt-4 text-2xl font-black uppercase text-white md:text-4xl">Vision, Creativity &amp; Vivacity.</h2>
-          <p className="mt-8 text-zinc-300">Dear Visitor,</p>
+            <div className="relative z-10 text-center">
+              <p className="text-base font-bold uppercase tracking-[0.2em] text-yellow-500 md:text-lg">Rolls Nation Presence 2026</p>
+              <h2 className="mt-4 text-2xl font-black uppercase text-white md:text-4xl">Growing Across India</h2>
+              <p className="mx-auto mt-6 max-w-4xl text-sm font-semibold uppercase leading-relaxed text-zinc-200 md:text-lg">
+                Now presence in 11+ states / UT with 65+ cities and 75+ outlets across India. Planning to cross 100+
+                outlet milestone by 2026 Q3.
+              </p>
+            </div>
 
-          <div className="mt-6 space-y-5 text-zinc-300 leading-relaxed">
-            <p>
-              In this realm of an impetuously changing world, survival in business must never be taken for granted.
-              Our vision of the future must be lucid to allow anticipation of and response to new opportunities.
-            </p>
-            <p>
-              ROLLS NATION<span className="align-super text-[10px]">&reg;</span> evolution depends on our management
-              team and our achievements. To encourage further prosperity, we must be visionary, creative, and kinetic.
-              But above all, our efforts must add value.
-            </p>
-            <p>
-              Our vision of &quot;Great things in business are never done by one person; they&apos;re done by a team of
-              people.&quot; has come quite a long way, and we undertake continuously serving you the best.
-            </p>
-            <p>
-              Our business is guided by ethics and transparency, and we aim to further win and maintain customers by
-              preparing packaged products that validate price, quality and of course, taste.
-            </p>
-            <p>
-              ROLLS NATION<span className="align-super text-[10px]">&reg;</span> product range has been selected with
-              thoughtful precision and utmost care to provide full meal options. Our products come from extensive
-              research, and strictly, the choicest ingredients from farms direct.
-            </p>
-            <p>Thank you for visiting, Namashkar!</p>
-          </div>
+            <div className="relative z-10 mt-10 grid items-center gap-6 lg:grid-cols-[1fr_1.1fr_1fr]">
+              <div className="order-2 mx-auto h-72 w-full max-w-sm rounded-2xl border border-zinc-800 bg-black/35 p-4 md:h-96 lg:order-1">
+                <div className="relative h-full w-full">
+                  <Image
+                    src="/map-2.png"
+                    alt="Rolls Nation map presence"
+                    fill
+                    className="object-contain"
+                    sizes="(max-width: 1024px) 100vw, 33vw"
+                  />
+                </div>
+              </div>
 
-          <div className="mt-10 border-l-4 border-yellow-500 pl-5">
-            <p className="text-lg font-black uppercase text-white">Uday Deep</p>
-            <p className="text-sm font-bold uppercase tracking-[0.2em] text-yellow-500">Founder / Owner</p>
-            <p className="mt-1 text-sm uppercase tracking-[0.18em] text-zinc-400">Rolls Nation</p>
+              <div className="order-1 grid grid-cols-3 gap-3 text-center lg:order-2">
+                {[
+                  { label: 'States / UT', value: '11+' },
+                  { label: 'Cities', value: '65+' },
+                  { label: 'Outlets', value: '75+' },
+                ].map((item) => (
+                  <div key={item.label} className="rounded-xl border border-zinc-700 bg-black/50 p-4">
+                    <p className="text-2xl font-black text-yellow-500 md:text-3xl">{item.value}</p>
+                    <p className="mt-1 text-[11px] font-bold uppercase tracking-wide text-zinc-300 md:text-xs">{item.label}</p>
+                  </div>
+                ))}
+              </div>
+
+              <div className="order-3 mx-auto h-64 w-full max-w-sm rounded-2xl border border-zinc-800 bg-black/35 p-4 md:h-96">
+                <div className="relative h-full w-full">
+                  <Image
+                    src="/now-opening.png"
+                    alt="Now open for franchising"
+                    fill
+                    className="object-contain"
+                    sizes="(max-width: 1024px) 100vw, 33vw"
+                  />
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -245,8 +248,8 @@ export default function FranchisePage() {
       <section className="border-b border-zinc-800 py-20">
         <div className="container mx-auto max-w-6xl px-6">
           <div className="mb-10 text-center">
-            <p className="text-base font-bold uppercase tracking-[0.2em] text-yellow-500 md:text-lg">Why Rolls Nation?</p>
-            <h2 className="mt-4 text-2xl font-black uppercase text-white md:text-4xl">What We Offer Partners</h2>
+            <h2 className="text-2xl font-black uppercase text-white md:text-4xl">Why Rolls Nation?</h2>
+            <p className="mt-4 text-base font-bold uppercase tracking-[0.2em] text-yellow-500 md:text-lg">What We Offer Partners</p>
           </div>
 
           <p className="mx-auto max-w-5xl text-center text-zinc-300 leading-relaxed">
@@ -265,8 +268,8 @@ export default function FranchisePage() {
       <section className="py-20">
         <div className="container mx-auto max-w-6xl px-6">
           <div className="mb-12 text-center">
-            <p className="text-base font-bold uppercase tracking-[0.2em] text-yellow-500 md:text-lg">Franchise Support</p>
-            <h2 className="mt-4 text-2xl font-black uppercase text-white md:text-4xl">End-to-End Assistance</h2>
+            <h2 className="text-2xl font-black uppercase text-white md:text-4xl">Franchise Support</h2>
+            <p className="mt-4 text-base font-bold uppercase tracking-[0.2em] text-yellow-500 md:text-lg">End-to-End Assistance</p>
           </div>
 
           <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
@@ -282,7 +285,7 @@ export default function FranchisePage() {
           </div>
 
           <div className="mt-14 rounded-3xl border border-zinc-800 bg-zinc-900 p-8 text-center md:p-12">
-            <h3 className="text-2xl font-black uppercase text-white md:text-4xl">Ready to Start Your Franchise?</h3>
+            <h3 className="text-2xl font-black uppercase text-white md:text-4xl">Ready to Start Kathi Roll Franchise?</h3>
             <p className="mx-auto mt-4 max-w-3xl text-zinc-300">
               Talk to our team and get complete guidance on investment, location, setup, and operations.
             </p>
