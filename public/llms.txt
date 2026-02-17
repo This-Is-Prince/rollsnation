@@ -1,5 +1,4 @@
-export function GET() {
-  const body = `# Rolls Nation
+# Rolls Nation
 
 > Official resources for kathi roll franchise, rolls franchise, and low-investment QSR opportunities in India.
 
@@ -23,11 +22,3 @@ export function GET() {
 - kathi roll franchise in Punjab
 - kathi roll franchise in Ludhiana
 - QSR franchise India low investment
-`;
-
-  return new Response(body, {
-    headers: {
-      'Content-Type': 'text/plain; charset=utf-8',
-    },
-  });
-}

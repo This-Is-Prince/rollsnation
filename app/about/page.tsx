@@ -101,16 +101,25 @@ export default function AboutPage() {
                         </div>
                     </div>
 
-                    <div className="relative h-150 w-full bg-zinc-900 rounded-3xl overflow-hidden border border-zinc-800 group animate-in fade-in slide-in-from-right-8 duration-700 delay-100 shadow-2xl shadow-yellow-900/10">
-                        <Image 
-                            src="/pic.png"
-                            alt="Rolls Nation Founder"
-                            fill
-                            className="object-contain transition-transform duration-700 group-hover:scale-105"
-                            priority
-                            sizes="(max-width: 768px) 100vw, 50vw"
-                        />
-                        <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent opacity-60"></div>
+                    <div className="space-y-5">
+                        <div className="relative h-150 w-full bg-zinc-900 rounded-3xl overflow-hidden border border-zinc-800 group animate-in fade-in slide-in-from-right-8 duration-700 delay-100 shadow-2xl shadow-yellow-900/10">
+                            <Image 
+                                src="/pic.png"
+                                alt="Rolls Nation Founder"
+                                fill
+                                className="object-contain transition-transform duration-700 group-hover:scale-105"
+                                priority
+                                sizes="(max-width: 768px) 100vw, 50vw"
+                            />
+                            <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent opacity-60"></div>
+                        </div>
+
+                        <div className="rounded-2xl border border-zinc-800 bg-zinc-900/50 px-6 py-5">
+                            <p className="text-white text-lg md:text-xl font-black uppercase">Rolls Nation Owner &amp; Founder</p>
+                            <p className="mt-1 text-yellow-500 text-sm md:text-base font-bold tracking-wide">
+                                Mr. Uday Deep (2012 - Present)
+                            </p>
+                        </div>
                     </div>
 
                 </div>
