@@ -46,14 +46,16 @@ export default function TopBar() {
 
           <div className="flex items-center gap-3">
             <span className="text-zinc-500 text-xs">Ready to start your own business?</span>
-            <Link 
-              href="/franchise" 
+            <a
+              target='_blank'
+              rel='noopener noreferrer'
+              href="https://wa.me/917696833321"
               className="group flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-yellow-500 hover:text-yellow-400 transition-all duration-300"
             >
               <Sparkles size={12} className="animate-pulse" />
               <span>Franchise Inquiry</span>
               <span className="transform group-hover:translate-x-1 transition-transform duration-300">→</span>
-            </Link>
+            </a>
           </div>
         </div>
       </div>

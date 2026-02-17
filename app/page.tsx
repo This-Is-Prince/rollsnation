@@ -32,7 +32,7 @@ export default function HomePage() {
           <div className="space-y-8 animate-in fade-in slide-in-from-left-10 duration-1000">
             <div>
               <span className="inline-block py-1 px-3 border border-yellow-500 rounded-full text-yellow-500 text-xs font-bold tracking-widest uppercase mb-4 bg-yellow-500/10 backdrop-blur-sm">
-                India&apos;s Fastest Growing Chain
+                India&apos;s Fastest Growing Franchise
               </span>
               <h1 className="text-5xl md:text-7xl font-black leading-[1.1] uppercase italic">
                 The <span className="text-transparent bg-clip-text bg-linear-to-r from-yellow-400 to-yellow-600">Ultimate</span> <br /> 
@@ -53,12 +53,14 @@ export default function HomePage() {
               >
                 View Menu <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
-              <Link 
-                href="/franchise"
+              <a
+                target='_blank'
+                rel='noopener noreferrer'
+                href="https://wa.me/917696833321"
                 className="group border border-white hover:border-yellow-500 hover:text-yellow-500 text-white px-8 py-4 rounded-full font-bold uppercase tracking-wider transition-all hover:bg-zinc-900 flex items-center justify-center gap-2"
               >
                 Get Franchise
-              </Link>
+              </a>
             </div>
           </div>
           
@@ -82,7 +84,7 @@ export default function HomePage() {
               { label: "Outlets", value: "75+", icon: Store },
               { label: "Cities", value: "65+", icon: MapPin },
               { label: "States", value: "11+", icon: TrendingUp },
-              { label: "Menu Variants", value: "99+", icon: Utensils },
+              { label: "Menu Variants", value: "150+", icon: Utensils },
             ].map((stat, idx) => (
               <div key={idx} className="text-center group">
                 <div className="flex items-center justify-center gap-2 mb-2 text-zinc-500 group-hover:text-yellow-500 transition-colors">
@@ -123,7 +125,7 @@ export default function HomePage() {
               <ul className="space-y-4">
                 {[
                   "Freshly made parathas (No frozen bases)",
-                  "Secret blend of 20+ spices",
+                  "Secret blend of 35+ spices",
                   "100% Hygiene maintained kitchens"
                 ].map((item, i) => (
                   <li key={i} className="flex items-center gap-3 text-white">

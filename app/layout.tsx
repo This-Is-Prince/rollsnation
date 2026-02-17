@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     default: 'Rolls Nation | Best Kathi Rolls Franchise in India',
     template: '%s | Rolls Nation',
   },
-  description: 'Join India\'s fastest growing Kathi Roll franchise. Rolls Nation offers 99+ menu variants, low investment models, and high ROI. 25+ branches across India.',
+  description: 'Join India\'s fastest growing Kathi Roll franchise. Rolls Nation offers 150 menu variants, low investment models, and high ROI. 25+ branches across India.',
   keywords: ['Kathi Rolls', 'Franchise Opportunity India', 'Food Franchise', 'Rolls Nation', 'Best Fast Food Franchise'],
   authors: [{ name: 'Rolls Nation' }],
   creator: 'Rolls Nation',

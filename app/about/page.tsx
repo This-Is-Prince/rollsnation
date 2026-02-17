@@ -48,7 +48,7 @@ export default function AboutPage() {
         { label: "Outlets", value: "75+", icon: Store },
         { label: "Cities", value: "65+", icon: MapPin },
         { label: "States", value: "11+", icon: Globe },
-        { label: "Happy Eaters", value: "100k+", icon: Users },
+        { label: "Happy Eaters", value: "1M+", icon: Users },
     ];
 
     return (
@@ -103,10 +103,10 @@ export default function AboutPage() {
 
                     <div className="relative h-150 w-full bg-zinc-900 rounded-3xl overflow-hidden border border-zinc-800 group animate-in fade-in slide-in-from-right-8 duration-700 delay-100 shadow-2xl shadow-yellow-900/10">
                         <Image 
-                            src="/staffs/founder.jpg"
+                            src="/pic.png"
                             alt="Rolls Nation Founder"
                             fill
-                            className="object-cover transition-transform duration-700 group-hover:scale-105"
+                            className="object-contain transition-transform duration-700 group-hover:scale-105"
                             priority
                             sizes="(max-width: 768px) 100vw, 50vw"
                         />
