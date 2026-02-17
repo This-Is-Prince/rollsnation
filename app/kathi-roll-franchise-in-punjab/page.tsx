@@ -254,7 +254,7 @@ export default function KathiRollFranchiseInPunjabPage() {
       <section className="py-16">
         <div className="container mx-auto px-6">
           <div className="rounded-3xl border border-zinc-800 bg-zinc-900 p-8 text-center md:p-12">
-            <h2 className="text-2xl font-black uppercase text-white md:text-4xl">Build Your Rolls Franchise in Punjab</h2>
+            <h2 className="text-2xl font-black uppercase text-white md:text-4xl">Build Your Rolls Franchise in Your City</h2>
             <p className="mx-auto mt-4 max-w-3xl text-zinc-300">
               Combine low investment food franchise India demand with local city execution and standardized operations.
             </p>
