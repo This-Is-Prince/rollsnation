@@ -60,7 +60,6 @@ export default function ContactPage() {
                 <h3 className="text-xl font-bold text-white mb-4">Email</h3>
                 <div className="space-y-2">
                   <a href="mailto:info@rollsnation.in" className="block text-zinc-400 hover:text-white transition-colors wrap-break-word">info@rollsnation.in</a>
-                  <a href="mailto:rollsnation.official@gmail.com" className="block text-zinc-400 hover:text-white transition-colors wrap-break-word">rollsnation.official@gmail.com</a>
                 </div>
               </div>
             </div>

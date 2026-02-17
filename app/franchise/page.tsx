@@ -314,7 +314,7 @@ export default function FranchisePage() {
           <div className="grid grid-cols-1 gap-4 text-center md:grid-cols-4">
             {[
               { label: 'Brand Type', value: 'Indian QSR', icon: Store },
-              { label: 'Investment Starts', value: 'INR 10 Lacs', icon: BadgeIndianRupee },
+              { label: 'Investment Starts', value: 'INR 9 Lacs', icon: BadgeIndianRupee },
               { label: 'Operations', value: 'FOCO / FOFO', icon: Handshake },
               { label: 'Agreement Term', value: '5 Years', icon: Clock3 },
             ].map((item) => (

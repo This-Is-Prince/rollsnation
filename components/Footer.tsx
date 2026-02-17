@@ -144,22 +144,19 @@ export default function Footer() {
                     <a href="mailto:info@rollsnation.in" className="text-zinc-300 hover:text-white transition-colors text-sm font-medium">
                       info@rollsnation.in
                     </a>
-                    <a href="mailto:rollsnation.official@gmail.com" className="text-zinc-400 hover:text-white transition-colors text-sm truncate">
-                      rollsnation.official@gmail.com
-                    </a>
                   </div>
                 </div>
               </div>
 
               <div className="pt-4">
-                <Link 
-                  href="/franchise"
+                <a
+                  href="https://wa.me/917696833321"
                   className="group inline-flex items-center gap-2 bg-linear-to-r from-yellow-500 to-amber-500 hover:from-yellow-400 hover:to-amber-400 text-black px-5 py-2.5 rounded-xl font-bold text-sm transition-all shadow-lg shadow-yellow-500/20 hover:shadow-yellow-500/30"
                 >
                   <Sparkles size={16} />
                   <span>Start Your Franchise</span>
                   <ArrowUpRight size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                </Link>
+                </a>
               </div>
             </div>
           </div>
