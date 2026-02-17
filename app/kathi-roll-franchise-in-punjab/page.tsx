@@ -137,7 +137,6 @@ export default function KathiRollFranchiseInPunjabPage() {
         <div className="absolute inset-0 bg-[url('/map-2.png')] bg-contain bg-left bg-no-repeat opacity-10" />
         <div className="absolute inset-0 bg-linear-to-b from-black/20 via-black/90 to-black" />
         <div className="container relative z-10 mx-auto px-6 py-20 md:py-24">
-          <p className="text-base font-bold uppercase tracking-[0.2em] text-yellow-500">Location SEO Page</p>
           <h1 className="mt-4 max-w-5xl text-4xl font-black uppercase leading-tight text-white md:text-6xl">
             Kathi Roll Franchise in Punjab, Ludhiana &amp; North India
           </h1>
@@ -167,23 +166,20 @@ export default function KathiRollFranchiseInPunjabPage() {
 
       <section className="border-b border-zinc-800 py-16">
         <div className="container mx-auto px-6">
-          <h2 className="text-3xl font-black uppercase text-white md:text-5xl">Cities We Prioritize for Growth</h2>
+          <h2 className="text-3xl font-black uppercase text-white md:text-5xl">Market Coverage We Prioritize</h2>
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {[
-              'Ludhiana',
-              'Chandigarh',
-              'Jalandhar',
-              'Amritsar',
-              'Patiala',
-              'Mohali',
-              'Delhi NCR',
-              'Jaipur',
-              'Tier-2 North India markets',
-            ].map((city) => (
-              <div key={city} className="rounded-xl border border-zinc-800 bg-zinc-900/40 p-4">
+              'Tier-1 markets',
+              'Tier-2 markets',
+              'Tier-3 markets',
+              'Pan India markets',
+              'North, South, East, and West regions',
+              'Emerging growth markets',
+            ].map((market) => (
+              <div key={market} className="rounded-xl border border-zinc-800 bg-zinc-900/40 p-4">
                 <p className="flex items-center gap-2 text-sm font-bold uppercase text-zinc-100">
                   <MapPin className="h-4 w-4 text-yellow-500" />
-                  {city}
+                  {market}
                 </p>
               </div>
             ))}

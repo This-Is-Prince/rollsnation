@@ -60,7 +60,7 @@ export default function AboutPage() {
             
             <div className="relative z-10 text-center px-4 max-w-4xl mx-auto animate-in fade-in slide-in-from-bottom-4 duration-700">
                 <span className="text-yellow-500 font-bold tracking-[0.3em] uppercase text-xs md:text-sm mb-4 block">
-                    The Taste of Tradition
+                    The real taste of Kolkata Kathi Rolls
                 </span>
                 <h1 className="text-5xl md:text-7xl font-black text-white uppercase italic mb-6 leading-tight">
                     Our <span className="text-transparent bg-clip-text bg-linear-to-r from-yellow-400 to-yellow-600">Story</span>
