@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import type { Metadata } from 'next';
 import { 
   Utensils, 
   Store, 
@@ -10,6 +11,23 @@ import {
   TrendingUp,
   Star
 } from 'lucide-react';
+
+export const metadata: Metadata = {
+  title: 'Kathi Roll Franchise in India | Low Investment Fast Food Franchise',
+  description:
+    'Explore Rolls Nation kathi roll franchise in India with low investment options, high ROI models, and complete support to start your own fast food business.',
+  keywords: [
+    'kathi roll franchise India',
+    'rolls franchise India',
+    'fast food franchise under 10 lakhs India',
+    'QSR franchise India low investment',
+    'street food franchise opportunity',
+    'Rolls Nation franchise',
+  ],
+  alternates: {
+    canonical: 'https://rollsnationindia.in/',
+  },
+};
 
 export default function HomePage() {
   return (

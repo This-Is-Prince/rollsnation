@@ -5,6 +5,13 @@ import { AppCheckProvider } from "@/src/context/AppCheckContext";
 import TopBar from '@/components/TopBar';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import {
+  allFranchiseSeoKeywords,
+  broaderAttractorKeywords,
+  locationKeywords,
+  moneyKeywords,
+  primaryKeywords,
+} from '@/src/lib/franchiseSeoKeywords';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -22,8 +29,16 @@ export const metadata: Metadata = {
     default: 'Rolls Nation | Best Kathi Rolls Franchise in India',
     template: '%s | Rolls Nation',
   },
-  description: 'Join India\'s fastest growing Kathi Roll franchise. Rolls Nation offers 150 menu variants, low investment models, and high ROI. 25+ branches across India.',
-  keywords: ['Kathi Rolls', 'Franchise Opportunity India', 'Food Franchise', 'Rolls Nation', 'Best Fast Food Franchise'],
+  description:
+    'Kathi roll franchise in India with low investment models, strong ROI, and full setup support. Explore kathi roll franchise cost, Punjab opportunities, and step-by-step application guidance.',
+  keywords: [
+    ...primaryKeywords,
+    ...moneyKeywords,
+    ...locationKeywords,
+    ...broaderAttractorKeywords,
+    'Rolls Nation',
+    'best fast food franchise',
+  ],
   authors: [{ name: 'Rolls Nation' }],
   creator: 'Rolls Nation',
   publisher: 'Rolls Nation',
@@ -34,7 +49,8 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: 'Rolls Nation - Best Kathi Rolls Franchise in India',
-    description: 'Start your own food business with Rolls Nation. 15+ years of experience and 25+ outlets.',
+    description:
+      'Start your own kathi roll and wraps franchise with Rolls Nation. Get cost, investment, and franchise process details for India and Punjab.',
     url: 'https://rollsnationindia.in',
     siteName: 'Rolls Nation',
     images: [
@@ -50,8 +66,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Rolls Nation Franchise',
-    description: 'Join the fastest growing Kathi Roll franchise network in India.',
+    title: 'Rolls Nation | Kathi Roll Franchise in India',
+    description: 'Low investment kathi roll franchise with strong ROI and complete support.',
     images: ['/rollsnation.jpeg'],
   },
   robots: {
@@ -74,14 +90,16 @@ export default function RootLayout({
 }) {
   const jsonLd = {
     '@context': 'https://schema.org',
-    '@type': 'Restaurant',
+    '@type': ['Restaurant', 'LocalBusiness'],
     name: 'Rolls Nation',
     image: '/rollsnation.jpeg',
     '@id': 'https://rollsnationindia.in',
     url: 'https://rollsnationindia.in',
     telephone: '+917696833321',
-    menu: 'https://rollsnationindia.in/menu',
     servesCuisine: 'Indian',
+    areaServed: ['India', 'Punjab', 'Ludhiana', 'Chandigarh', 'North India'],
+    description:
+      'Kathi roll franchise and street food franchise opportunity in India with low investment and high ROI support models.',
     priceRange: '₹₹',
     address: {
       '@type': 'PostalAddress',
@@ -117,6 +135,7 @@ export default function RootLayout({
       "https://www.linkedin.com/company/rolls-nation",
       "https://www.youtube.com/@rollsnationindia"
     ],
+    knowsAbout: allFranchiseSeoKeywords,
   };
 
   return (

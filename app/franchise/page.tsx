@@ -1,6 +1,14 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import type { Metadata } from 'next';
 import { ArrowRight, BadgeIndianRupee, Building2, Clock3, Handshake, Landmark, MapPin, Rocket, ShieldCheck, Store, Users } from 'lucide-react';
+import {
+  actionKeywords,
+  benefitKeywords,
+  locationKeywords,
+  moneyKeywords,
+  primaryKeywords,
+} from '@/src/lib/franchiseSeoKeywords';
 
 const franchiseModels = [
   {
@@ -76,10 +84,37 @@ const supportItems = [
   },
 ];
 
+const franchiseFaqs = [
+  {
+    question: 'What is the kathi roll franchise cost in India?',
+    answer:
+      'Cost depends on selected format and location. Rolls Nation offers multiple investment models with transparent setup and franchise fee guidance.',
+  },
+  {
+    question: 'How to start kathi roll franchise with Rolls Nation?',
+    answer:
+      'Start with enquiry, model selection, location feasibility, documentation, setup, training, and launch support through a structured process.',
+  },
+  {
+    question: 'Is Rolls Nation suitable for kathi roll franchise in Punjab and Ludhiana?',
+    answer:
+      'Yes. Punjab and Ludhiana are priority markets with strong demand for rolls, wraps, and street-food QSR formats.',
+  },
+  {
+    question: 'Do you support low investment high profit kathi roll franchise models?',
+    answer:
+      'Yes. Compact formats are designed for lower investment and faster payback where location and operations are optimized.',
+  },
+];
+
 export const metadata: Metadata = {
   title: 'Franchise | Rolls Nation - Best Food Franchise Opportunity',
   description:
-    'Own a Rolls Nation franchise with FOCO/FOFO models, high ROI, setup support, and full operational guidance across India.',
+    'Own a Rolls Nation kathi roll franchise in India with low investment options, high ROI, FOCO/FOFO operations, and complete setup support.',
+  keywords: [...primaryKeywords, ...moneyKeywords.slice(0, 10), ...actionKeywords.slice(0, 8), ...benefitKeywords.slice(0, 8), ...locationKeywords.slice(0, 6)],
+  alternates: {
+    canonical: 'https://rollsnationindia.in/franchise',
+  },
   openGraph: {
     title: 'Rolls Nation Franchise Models',
     description:
@@ -90,8 +125,49 @@ export const metadata: Metadata = {
 };
 
 export default function FranchisePage() {
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: franchiseFaqs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: faq.answer,
+      },
+    })),
+  };
+
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://rollsnationindia.in',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Franchise',
+        item: 'https://rollsnationindia.in/franchise',
+      },
+    ],
+  };
+
   return (
     <div className="bg-black min-h-screen pt-20">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+
       <section className="relative overflow-hidden border-b border-zinc-800">
         <div className="absolute inset-0 bg-[url('/rollsnation.jpeg')] bg-cover bg-center opacity-20" />
         <div className="absolute inset-0 bg-linear-to-b from-black/20 via-black/90 to-black" />
@@ -262,6 +338,60 @@ export default function FranchisePage() {
             or an experienced investor, Rolls Nation provides end-to-end support from setup to operations, empowering
             you to run a successful outlet with confidence and pride.
           </p>
+        </div>
+      </section>
+
+      <section className="border-b border-zinc-800 py-20">
+        <div className="container mx-auto max-w-6xl px-6">
+          <div className="mb-10 text-center">
+            <h2 className="text-2xl font-black uppercase text-white md:text-4xl">Franchise SEO Guides</h2>
+            <p className="mt-4 text-zinc-300">
+              Explore detailed guides for kathi roll franchise cost, application process, and Punjab location opportunities.
+            </p>
+          </div>
+          <div className="grid gap-6 md:grid-cols-3">
+            {[
+              {
+                title: 'Kathi Roll Franchise Cost',
+                href: '/kathi-roll-franchise-cost',
+                desc: 'Investment, franchise fee, payback period, and ROI keywords.',
+              },
+              {
+                title: 'How to Start Kathi Roll Franchise',
+                href: '/how-to-start-kathi-roll-franchise',
+                desc: 'Step-by-step process, application, requirements, and setup flow.',
+              },
+              {
+                title: 'Kathi Roll Franchise in Punjab',
+                href: '/kathi-roll-franchise-in-punjab',
+                desc: 'Ludhiana, Chandigarh, and North India city-focused franchise demand.',
+              },
+            ].map((item) => (
+              <Link
+                key={item.title}
+                href={item.href}
+                className="rounded-2xl border border-zinc-800 bg-zinc-900/40 p-6 transition-colors hover:border-yellow-500/60"
+              >
+                <h3 className="text-xl font-black uppercase text-white">{item.title}</h3>
+                <p className="mt-3 text-sm text-zinc-300">{item.desc}</p>
+                <p className="mt-5 text-xs font-bold uppercase tracking-wide text-yellow-500">Read Guide</p>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-b border-zinc-800 py-20">
+        <div className="container mx-auto max-w-5xl px-6">
+          <h2 className="text-2xl font-black uppercase text-white md:text-4xl">Franchise FAQ</h2>
+          <div className="mt-8 space-y-4">
+            {franchiseFaqs.map((faq) => (
+              <article key={faq.question} className="rounded-2xl border border-zinc-800 bg-zinc-900/40 p-6">
+                <h3 className="text-lg font-bold text-white">{faq.question}</h3>
+                <p className="mt-3 text-zinc-300">{faq.answer}</p>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 

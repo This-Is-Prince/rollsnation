@@ -1,0 +1,149 @@
+export const primaryKeywords = [
+  'kathi roll franchise',
+  'kathi rolls franchise',
+  'kathi roll franchise India',
+  'rolls franchise India',
+  'kati roll franchise',
+  'frankie franchise India',
+  'rolls and wraps franchise',
+  'wrap rolls franchise',
+  'wraps franchise India',
+  'roll franchise opportunity',
+  'kathi kebab roll franchise',
+];
+
+export const moneyKeywords = [
+  'kathi roll franchise cost',
+  'kathi roll franchise investment',
+  'kathi roll franchise fee',
+  'kathi rolls franchise cost in India',
+  'low investment kathi roll franchise',
+  'kathi roll franchise under 10 lakhs',
+  'kathi roll franchise under 15 lakhs',
+  'kathi roll franchise under 5 lakhs',
+  'rolls franchise cost India',
+  'frankie franchise cost',
+  'total investment for kathi roll franchise',
+  'kathi roll franchise package price',
+  'franchise fee for kathi rolls',
+  'kathi roll business investment 2026',
+  'ROI in kathi roll franchise',
+  'profit margin kathi roll franchise',
+];
+
+export const actionKeywords = [
+  'how to start kathi roll franchise',
+  'how to get kathi roll franchise',
+  'apply for kathi roll franchise',
+  'kathi roll franchise application',
+  'become kathi roll franchisee',
+  'join kathi roll franchise',
+  'kathi roll franchise opportunity',
+  'buy kathi roll franchise',
+  'invest in kathi roll franchise',
+  'start rolls business franchise',
+  'kathi roll franchise enquiry',
+  'kathi roll franchise requirements',
+  'kathi roll franchise process',
+];
+
+export const benefitKeywords = [
+  'best kathi roll franchise in India',
+  'profitable kathi roll franchise',
+  'low investment high profit kathi roll franchise',
+  'high ROI kathi roll franchise',
+  'best food franchise India rolls',
+  'street food franchise India',
+  'QSR franchise India low investment',
+  'fast food franchise under 10 lakhs India',
+  'most profitable rolls franchise',
+  'award winning kathi roll franchise',
+  'cloud kitchen kathi roll franchise',
+  'no royalty kathi roll franchise',
+  'low royalty rolls franchise',
+];
+
+export const brandDiscoveryKeywords = [
+  'kathi junction franchise',
+  'roll nation franchise',
+  'rolls nation franchise',
+  'baap of rolls franchise',
+  'tibbs frankie franchise',
+  'kathi queen franchise',
+  'the kati roll shop franchise',
+  '34 chowringhee lane franchise',
+  'rolls mania franchise',
+  'rolls on wheels franchise',
+  'hl frankie franchise',
+  'kathi rolls company franchise',
+];
+
+export const locationKeywords = [
+  'kathi roll franchise in Punjab',
+  'kathi roll franchise in Ludhiana',
+  'rolls franchise in Delhi',
+  'rolls franchise in Mumbai',
+  'rolls franchise in Bangalore',
+  'rolls franchise in Hyderabad',
+  'rolls franchise in Chandigarh',
+  'food franchise in Ludhiana',
+  'food franchise in Punjab',
+  'kathi roll franchise near me',
+  'kathi roll franchise opportunity in North India',
+  'street food franchise Punjab',
+];
+
+export const longTailKeywords = [
+  'kathi roll franchise cost breakdown 2026',
+  'how much profit in kathi roll franchise per month',
+  'kathi roll franchise ROI calculator',
+  'kathi roll franchise payback period',
+  'requirements to open kathi roll franchise',
+  'best low investment street food franchise in India 2026',
+  'kathi roll franchise vs frankie franchise',
+  'is kathi roll franchise profitable in small city',
+  'is kathi roll franchise profitable in tier 2 city',
+  'kathi roll kiosk franchise',
+  'kathi roll takeaway model',
+  'kathi roll QSR model',
+  'master franchise for kathi rolls India',
+  'area franchise for kathi rolls India',
+  'kathi roll franchise success stories',
+  'kathi roll franchisee reviews',
+  'how to open kathi roll shop without franchise',
+];
+
+export const hindiAndHinglishKeywords = [
+  'काठी रोल फ्रैंचाइजी',
+  'काठी रोल फ्रैंचाइजी कॉस्ट',
+  'रोल्स फ्रैंचाइजी बिजनेस',
+  'काठी रोल का फ्रैंचाइजी',
+  'कम निवेश फ्रैंचाइजी रोल्स',
+  'फ्रैंचाइजी बिजनेस फूड इंडिया',
+  'काठी जंक्शन फ्रैंचाइजी',
+  'रोल फ्रैंचाइजी इन पंजाब',
+];
+
+export const broaderAttractorKeywords = [
+  'low investment food franchise India',
+  'street food franchise opportunity',
+  'QSR franchise low investment high return',
+  'profitable fast food franchise under 15 lakhs',
+  'Indian street food franchise',
+  'rolls shop franchise business plan',
+  'franchise india rolls',
+];
+
+export const allFranchiseSeoKeywords = [
+  ...new Set([
+    ...primaryKeywords,
+    ...moneyKeywords,
+    ...actionKeywords,
+    ...benefitKeywords,
+    ...brandDiscoveryKeywords,
+    ...locationKeywords,
+    ...longTailKeywords,
+    ...hindiAndHinglishKeywords,
+    ...broaderAttractorKeywords,
+  ]),
+];
