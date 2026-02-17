@@ -85,8 +85,8 @@ export default function TestimonyPage() {
         <div className="absolute inset-0 bg-[url('/rollsnation.jpeg')] bg-cover bg-center opacity-12" />
         <div className="absolute inset-0 bg-linear-to-b from-zinc-900/40 to-black" />
         <div className="container relative z-10 mx-auto px-6 text-center">
-          <p className="text-sm font-bold uppercase tracking-[0.24em] text-yellow-500">Testimony</p>
-          <h1 className="mt-4 text-4xl font-black uppercase md:text-6xl">Rolling Into The Limelight</h1>
+          <h1 className="text-5xl font-black uppercase text-white md:text-7xl">Testimony</h1>
+          <h2 className="mt-4 text-2xl font-black uppercase text-zinc-200 md:text-4xl">Rolling Into The Limelight</h2>
           <p className="mx-auto mt-5 max-w-3xl text-zinc-300">
             A growing collection of media mentions, market momentum, and the story behind the people building Rolls Nation.
           </p>
@@ -136,9 +136,9 @@ export default function TestimonyPage() {
 
         <div className="container relative z-10 mx-auto px-6">
           <div className="mb-12">
-            <p className="text-base font-bold uppercase tracking-[0.2em] text-yellow-500 md:text-lg">Founder Note</p>
-            <h2 className="mt-3 max-w-4xl text-4xl font-black uppercase leading-tight text-white md:text-6xl">
-              Vision, Creativity &amp; Vivacity.
+            <p className="text-sm font-bold uppercase tracking-[0.2em] text-yellow-500 md:text-base">Vision, Creativity &amp; Vivacity.</p>
+            <h2 className="mt-3 max-w-5xl text-4xl font-black uppercase leading-tight text-white md:text-6xl">
+              Rolls Nation - Founder Note
             </h2>
             <div className="mt-5 h-1 w-36 rounded-full bg-yellow-500" />
           </div>
