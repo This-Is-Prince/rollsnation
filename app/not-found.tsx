@@ -5,8 +5,8 @@ import { PRIMARY_PHONE_HREF, PRIMARY_PHONE_LABEL } from '@/src/config/site';
 export default function NotFound() {
   const quickLinks = [
     { label: 'Home', href: '/', icon: Home },
-    { label: 'About', href: '/about', icon: Compass },
-    { label: 'Contact', href: '/contact', icon: PhoneCall },
+    { label: 'About', href: '/about-us', icon: Compass },
+    { label: 'Contact', href: '/contact-us', icon: PhoneCall },
   ];
 
   return (

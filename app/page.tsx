@@ -157,7 +157,7 @@ export default function HomePage() {
               </ul>
 
               <Link 
-                href="/about" 
+                href="/about-us" 
                 className="inline-block text-yellow-500 font-bold uppercase tracking-wider hover:text-white transition-colors border-b border-yellow-500 pb-1"
               >
                 Read Our Story

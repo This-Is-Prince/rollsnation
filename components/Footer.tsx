@@ -16,12 +16,12 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   const quickLinks = [
-    { name: 'About Us', href: '/about' },
+    { name: 'About Us', href: '/about-us' },
     { name: 'Franchise', href: '/franchise' },
     { name: 'Franchise Cost', href: '/kathi-roll-franchise-cost' },
     { name: 'How to Start', href: '/how-to-start-kathi-roll-franchise' },
     { name: 'Franchise in Punjab', href: '/kathi-roll-franchise-in-punjab' },
-    { name: 'Contact', href: '/contact' },
+    { name: 'Contact', href: '/contact-us' },
   ];
 
   const socialLinks = [

@@ -37,12 +37,12 @@ export default function Navbar() {
   }, [mobileMenuOpen]);
 
   const navLinks = [
-    { name: 'About Us', href: '/about' },
+    { name: 'About Us', href: '/about-us' },
     { name: 'Franchise', href: '/franchise' },
     { name: 'Menu', href: '/menu' },
     { name: 'Gallery', href: '/gallery' },
     { name: 'Testimony', href: '/testimony' },
-    { name: 'Contact', href: '/contact' },
+    { name: 'Contact', href: '/contact-us' },
   ];
 
   const socialLinks = [

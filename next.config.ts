@@ -46,20 +46,6 @@ const nextConfig: NextConfig = {
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
   },
 
-  async redirects() {
-    return [
-      { source: "/contact-us/:path*", destination: "/contact", permanent: true },
-      { source: "/contactus", destination: "/contact", permanent: true },
-      { source: "/contact-us.html", destination: "/contact", permanent: true },
-      { source: "/about-us/:path*", destination: "/about", permanent: true },
-      { source: "/aboutus", destination: "/about", permanent: true },
-      { source: "/about-us.html", destination: "/about", permanent: true },
-      { source: "/our-outlets/:path*", destination: "/testimony", permanent: true },
-      { source: "/ouroutlets", destination: "/testimony", permanent: true },
-      { source: "/our-outlets.html", destination: "/testimony", permanent: true },
-    ];
-  },
-
   async headers() {
     return [
       {
