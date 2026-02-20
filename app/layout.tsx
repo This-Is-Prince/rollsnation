@@ -2,16 +2,17 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { AppCheckProvider } from "@/src/context/AppCheckContext";
-import TopBar from '@/components/TopBar';
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
+import TopBar from "@/components/TopBar";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import { Analytics, GoogleAnalyticsScripts } from "@/components/Analytics";
 import {
   allFranchiseSeoKeywords,
   broaderAttractorKeywords,
   locationKeywords,
   moneyKeywords,
   primaryKeywords,
-} from '@/src/lib/franchiseSeoKeywords';
+} from "@/src/lib/franchiseSeoKeywords";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -24,51 +25,52 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://rollsnationindia.in'),
+  metadataBase: new URL("https://rollsnationindia.in"),
   title: {
-    default: 'Rolls Nation | Best Kathi Rolls Franchise in India',
-    template: '%s | Rolls Nation',
+    default: "Rolls Nation | Best Kathi Rolls Franchise in India",
+    template: "%s | Rolls Nation",
   },
   description:
-    'Kathi roll franchise in India with low investment models, strong ROI, and full setup support. Explore kathi roll franchise cost, Punjab opportunities, and step-by-step application guidance.',
+    "Kathi roll franchise in India with low investment models, strong ROI, and full setup support. Explore kathi roll franchise cost, Punjab opportunities, and step-by-step application guidance.",
   keywords: [
     ...primaryKeywords,
     ...moneyKeywords,
     ...locationKeywords,
     ...broaderAttractorKeywords,
-    'Rolls Nation',
-    'best fast food franchise',
+    "Rolls Nation",
+    "best fast food franchise",
   ],
-  authors: [{ name: 'Rolls Nation' }],
-  creator: 'Rolls Nation',
-  publisher: 'Rolls Nation',
+  authors: [{ name: "Rolls Nation" }],
+  creator: "Rolls Nation",
+  publisher: "Rolls Nation",
   formatDetection: {
     email: false,
     address: false,
     telephone: false,
   },
   openGraph: {
-    title: 'Rolls Nation - Best Kathi Rolls Franchise in India',
+    title: "Rolls Nation - Best Kathi Rolls Franchise in India",
     description:
-      'Start your own kathi roll and wraps franchise with Rolls Nation. Get cost, investment, and franchise process details for India and Punjab.',
-    url: 'https://rollsnationindia.in',
-    siteName: 'Rolls Nation',
+      "Start your own kathi roll and wraps franchise with Rolls Nation. Get cost, investment, and franchise process details for India and Punjab.",
+    url: "https://rollsnationindia.in",
+    siteName: "Rolls Nation",
     images: [
       {
-        url: '/rollsnation.jpeg',
+        url: "/rollsnation.jpeg",
         width: 1200,
         height: 630,
-        alt: 'Rolls Nation Franchise',
+        alt: "Rolls Nation Franchise",
       },
     ],
-    locale: 'en_IN',
-    type: 'website',
+    locale: "en_IN",
+    type: "website",
   },
   twitter: {
-    card: 'summary_large_image',
-    title: 'Rolls Nation | Kathi Roll Franchise in India',
-    description: 'Low investment kathi roll franchise with strong ROI and complete support.',
-    images: ['/rollsnation.jpeg'],
+    card: "summary_large_image",
+    title: "Rolls Nation | Kathi Roll Franchise in India",
+    description:
+      "Low investment kathi roll franchise with strong ROI and complete support.",
+    images: ["/rollsnation.jpeg"],
   },
   robots: {
     index: true,
@@ -76,9 +78,9 @@ export const metadata: Metadata = {
     googleBot: {
       index: true,
       follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
     },
   },
 };
@@ -89,78 +91,114 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': ['Restaurant', 'LocalBusiness'],
-    name: 'Rolls Nation',
-    image: '/rollsnation.jpeg',
-    '@id': 'https://rollsnationindia.in',
-    url: 'https://rollsnationindia.in',
-    telephone: '+917696833321',
-    servesCuisine: 'Indian',
-    areaServed: ['India', 'Punjab', 'Ludhiana', 'Chandigarh', 'North India'],
+    "@context": "https://schema.org",
+    "@type": ["Restaurant", "LocalBusiness"],
+    name: "Rolls Nation",
+    image: "https://rollsnationindia.in/rollsnation.jpeg",
+    "@id": "https://rollsnationindia.in",
+    url: "https://rollsnationindia.in",
+    telephone: "+917696833321",
+    servesCuisine: "Indian",
+    areaServed: ["India", "Punjab", "Ludhiana", "Chandigarh", "North India"],
     description:
-      'Kathi roll franchise and street food franchise opportunity in India with low investment and high ROI support models.',
-    priceRange: '₹₹',
+      "Kathi roll franchise and street food franchise opportunity in India with low investment and high ROI support models.",
+    priceRange: "₹₹",
     address: {
-      '@type': 'PostalAddress',
-      streetAddress: 'S.C.O 35, GF, Celebration Bazar, G.T Road',
-      addressLocality: 'Khanna',
-      addressRegion: 'Punjab',
-      postalCode: '141401',
-      addressCountry: 'IN',
+      "@type": "PostalAddress",
+      streetAddress: "S.C.O 35, GF, Celebration Bazar, G.T Road",
+      addressLocality: "Khanna",
+      addressRegion: "Punjab",
+      postalCode: "141401",
+      addressCountry: "IN",
     },
     geo: {
-      '@type': 'GeoCoordinates',
+      "@type": "GeoCoordinates",
       latitude: 30.7071,
       longitude: 76.2167,
     },
     openingHoursSpecification: {
-      '@type': 'OpeningHoursSpecification',
+      "@type": "OpeningHoursSpecification",
       dayOfWeek: [
-        'Monday',
-        'Tuesday',
-        'Wednesday',
-        'Thursday',
-        'Friday',
-        'Saturday',
-        'Sunday',
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday",
       ],
-      opens: '10:00',
-      closes: '23:00',
+      opens: "10:00",
+      closes: "23:00",
     },
     sameAs: [
       "https://www.facebook.com/rollsnationindia",
       "https://www.instagram.com/rollsnationindia",
       "https://x.com/rolls_nation",
       "https://www.linkedin.com/company/rolls-nation",
-      "https://www.youtube.com/@rollsnationindia"
+      "https://www.youtube.com/@rollsnationindia",
     ],
     knowsAbout: allFranchiseSeoKeywords,
+  };
+
+  const orgSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "Rolls Nation",
+    url: "https://rollsnationindia.in",
+    logo: "https://rollsnationindia.in/rollsnation.webp",
+    contactPoint: {
+      "@type": "ContactPoint",
+      telephone: "+91-76968-33321",
+      contactType: "customer service",
+      areaServed: "IN",
+      availableLanguage: ["English", "Hindi", "Punjabi"],
+    },
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "S.C.O 35, GF, Celebration Bazar, G.T Road",
+      addressLocality: "Khanna",
+      addressRegion: "Punjab",
+      postalCode: "141401",
+      addressCountry: "IN",
+    },
+    sameAs: [
+      "https://www.facebook.com/rollsnationindia",
+      "https://www.instagram.com/rollsnationindia",
+      "https://x.com/rolls_nation",
+      "https://www.linkedin.com/company/rolls-nation",
+      "https://www.youtube.com/@rollsnationindia",
+    ],
   };
 
   return (
     <html lang="en" className="scroll-smooth">
       <head>
+        <link rel="preload" as="image" href="/rollsnation.jpeg" />
+
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}
+        />
+
+        <GoogleAnalyticsScripts />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-black text-white min-h-screen flex flex-col`}
       >
         <AppCheckProvider>
+          <Analytics />
+
           <header className="fixed top-0 left-0 right-0 z-50">
             <TopBar />
             <Navbar />
           </header>
-          
-          {/* <div className="h-20 lg:h-34" aria-hidden="true" /> */}
-          
-          <main className="flex-1">
-            {children}
-          </main>
-          
+
+          <main className="flex-1">{children}</main>
+
           <Footer />
         </AppCheckProvider>
       </body>
