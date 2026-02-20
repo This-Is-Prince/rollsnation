@@ -13,6 +13,7 @@ import {
   ChevronRight,
   Sparkles
 } from 'lucide-react';
+import { PRIMARY_PHONE_HREF, PRIMARY_PHONE_LABEL, SOCIAL_URLS } from '@/src/config/site';
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -45,11 +46,11 @@ export default function Navbar() {
   ];
 
   const socialLinks = [
-    { icon: Facebook, href: "https://www.facebook.com/rollsnationindia", color: "hover:bg-[#1877F2]", label: "Facebook" },
-    { icon: Instagram, href: "https://www.instagram.com/rollsnationindia", color: "hover:bg-gradient-to-br hover:from-purple-600 hover:via-pink-500 hover:to-orange-400", label: "Instagram" },
-    { icon: Twitter, href: "https://x.com/rolls_nation", color: "hover:bg-zinc-700", label: "Twitter" },
-    { icon: Linkedin, href: "https://www.linkedin.com/company/rolls-nation", color: "hover:bg-[#0A66C2]", label: "LinkedIn" },
-    { icon: Youtube, href: "https://www.youtube.com/@rollsnationindia", color: "hover:bg-[#FF0000]", label: "YouTube" },
+    { icon: Facebook, href: SOCIAL_URLS.facebook, color: "hover:bg-[#1877F2]", label: "Facebook" },
+    { icon: Instagram, href: SOCIAL_URLS.instagram, color: "hover:bg-gradient-to-br hover:from-purple-600 hover:via-pink-500 hover:to-orange-400", label: "Instagram" },
+    { icon: Twitter, href: SOCIAL_URLS.twitter, color: "hover:bg-zinc-700", label: "Twitter" },
+    { icon: Linkedin, href: SOCIAL_URLS.linkedin, color: "hover:bg-[#0A66C2]", label: "LinkedIn" },
+    { icon: Youtube, href: SOCIAL_URLS.youtube, color: "hover:bg-[#FF0000]", label: "YouTube" },
   ];
 
   return (
@@ -113,7 +114,8 @@ export default function Navbar() {
               <div className="h-8 w-px bg-linear-to-b from-transparent via-zinc-700 to-transparent" />
               
               <a 
-                href="tel:+917696833321" 
+                href={PRIMARY_PHONE_HREF}
+                data-analytics-source="navbar_call_desktop"
                 className="group relative flex items-center gap-2.5 bg-linear-to-r from-yellow-500 to-amber-500 hover:from-yellow-400 hover:to-amber-400 text-black px-6 py-2.5 rounded-full transition-all duration-300 font-bold text-sm shadow-lg shadow-yellow-500/25 hover:shadow-yellow-500/40 hover:scale-105 active:scale-95"
               >
                 <span className="absolute inset-0 rounded-full bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -124,7 +126,8 @@ export default function Navbar() {
 
             <div className="lg:hidden flex items-center gap-3 z-50">
               <a 
-                href="tel:+917696833321" 
+                href={PRIMARY_PHONE_HREF}
+                data-analytics-source="navbar_call_mobile"
                 className="w-11 h-11 bg-linear-to-br from-yellow-500 to-amber-500 text-black rounded-full flex items-center justify-center shadow-lg shadow-yellow-500/30 hover:shadow-yellow-500/50 transition-shadow"
                 aria-label="Call us"
               >
@@ -221,6 +224,7 @@ export default function Navbar() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={label}
+                    data-analytics-source={`navbar_social_${label.toLowerCase()}`}
                     className={`w-11 h-11 bg-zinc-900 rounded-xl flex items-center justify-center text-zinc-400 hover:text-white transition-all duration-300 ${color}`}
                   >
                     <Icon size={18} />
@@ -231,8 +235,8 @@ export default function Navbar() {
 
             <div className="pt-4 border-t border-zinc-800">
               <p className="text-zinc-500 text-xs">Need help? Call us at</p>
-              <a href="tel:+917696833321" className="text-yellow-500 font-bold text-lg hover:text-yellow-400 transition-colors">
-                +91 76968-33321
+              <a href={PRIMARY_PHONE_HREF} data-analytics-source="navbar_call_mobile_menu" className="text-yellow-500 font-bold text-lg hover:text-yellow-400 transition-colors">
+                {PRIMARY_PHONE_LABEL}
               </a>
             </div>
           </div>

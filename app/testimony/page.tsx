@@ -2,6 +2,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import { ArrowRight, Newspaper, Quote } from 'lucide-react';
+import { WHATSAPP_LINK } from '@/src/config/site';
+import { buildPageMetadata } from '@/src/lib/seo';
 
 const pressCoverage = [
   {
@@ -63,20 +65,19 @@ const founderNote = [
   'Thank you for visiting, Namashkar!',
 ];
 
-export const metadata: Metadata = {
-  title: 'Testimony | Rolls Nation Press Coverage & Founder Note',
-  description:
-    'Explore Rolls Nation press highlights and founder message. See how vision, creativity, and operational quality have built a strong food brand journey.',
-  alternates: {
-    canonical: 'https://rollsnationindia.in/testimony',
-  },
-  openGraph: {
-    title: 'Rolls Nation Testimony',
-    description: 'Media highlights and founder note from Rolls Nation.',
-    url: 'https://rollsnationindia.in/testimony',
-    images: ['/rollsnation.jpeg'],
-  },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  return buildPageMetadata({
+    path: '/testimony',
+    title: 'Testimony | Rolls Nation Press Coverage & Founder Note',
+    description:
+      'Explore Rolls Nation press highlights and founder message. See how vision, creativity, and operational quality have built a strong food brand journey.',
+    openGraph: {
+      title: 'Rolls Nation Testimony',
+      description: 'Media highlights and founder note from Rolls Nation.',
+      images: ['/rollsnation.jpeg'],
+    },
+  });
+}
 
 export default function TestimonyPage() {
   return (
@@ -197,7 +198,8 @@ export default function TestimonyPage() {
                 <ArrowRight className="h-4 w-4" />
               </Link>
               <a
-                href="https://wa.me/917696833321"
+                href={WHATSAPP_LINK}
+                data-analytics-source="testimony_footer_whatsapp"
                 className="inline-flex items-center gap-2 rounded-full border border-zinc-500 px-8 py-4 text-sm font-bold uppercase tracking-wide text-white transition-colors hover:border-yellow-500 hover:text-yellow-500"
               >
                 Connect on WhatsApp

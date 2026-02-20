@@ -25,8 +25,13 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-import { getAppCheckToken } from "@/src/services/firebase-client";
-import { trackContactFormSubmit } from "@/src/lib/analytics";
+// import { getAppCheckToken } from "@/src/services/firebase-client";
+import {
+  getClientTrackingContext,
+  trackContactFormError,
+  trackContactFormSubmit,
+  trackEvent,
+} from "@/src/lib/analytics";
 
 const formSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
@@ -55,23 +60,33 @@ export default function ContactForm() {
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setIsSubmitting(true);
     setErrorMessage(null);
+    const submitStartedAt = Date.now();
+    const subject = values.subject || "Unknown";
+
+    trackEvent("contact_form_attempt", {
+      event_category: "Contact",
+      event_label: subject,
+    });
 
     try {
-      const appCheckToken = await getAppCheckToken();
+      // const appCheckToken = await getAppCheckToken();
 
-      if (!appCheckToken) {
-        throw new Error(
-          "Unable to verify security context. Please refresh the page."
-        );
-      }
+      // if (!appCheckToken) {
+      //   throw new Error(
+      //     "Unable to verify security context. Please refresh the page."
+      //   );
+      // }
 
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "X-Firebase-AppCheck": appCheckToken,
+          // "X-Firebase-AppCheck": appCheckToken,
         },
-        body: JSON.stringify(values),
+        body: JSON.stringify({
+          ...values,
+          trackingContext: getClientTrackingContext(),
+        }),
       });
 
       const result = await response.json();
@@ -81,12 +96,21 @@ export default function ContactForm() {
       }
 
       // Track successful form submission in Google Analytics
-      trackContactFormSubmit(values.subject);
+      trackContactFormSubmit(subject);
+      trackEvent("contact_form_success", {
+        event_category: "Contact",
+        event_label: subject,
+        duration_ms: Date.now() - submitStartedAt,
+      });
 
       setIsSent(true);
       form.reset();
     } catch (error) {
       console.error("Form submission error:", error);
+      trackContactFormError(
+        subject,
+        error instanceof Error ? error.message.slice(0, 120) : "unknown_error"
+      );
       setErrorMessage(
         error instanceof Error ? error.message : "Something went wrong."
       );

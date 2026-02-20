@@ -2,16 +2,28 @@ import React from 'react';
 import type { Metadata } from 'next';
 import { Phone, Mail, MapPin, Facebook, Instagram, Twitter, Linkedin, Youtube } from 'lucide-react';
 import ContactForm from '@/components/ContactForm';
+import {
+  CONTACT_EMAIL,
+  CONTACT_EMAIL_HREF,
+  PRIMARY_PHONE_HREF,
+  PRIMARY_PHONE_LABEL,
+  SECONDARY_PHONE_HREF,
+  SECONDARY_PHONE_LABEL,
+  SOCIAL_URLS,
+} from '@/src/config/site';
+import { buildPageMetadata } from '@/src/lib/seo';
 
-export const metadata: Metadata = {
-  title: 'Contact Us | Rolls Nation Support & Franchise Inquiry',
-  description: 'Get in touch with Rolls Nation. Contact us for franchise opportunities, feedback, or general queries. Head Office in Khanna, Punjab.',
-  openGraph: {
-    title: 'Contact Rolls Nation',
-    description: 'Call us at +91-76968-33321 or visit our head office in Khanna, Punjab.',
-    url: 'https://rollsnationindia.in/contact',
-  },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  return buildPageMetadata({
+    path: '/contact',
+    title: 'Contact Us | Rolls Nation Support & Franchise Inquiry',
+    description: 'Get in touch with Rolls Nation. Contact us for franchise opportunities, feedback, or general queries. Head Office in Khanna, Punjab.',
+    openGraph: {
+      title: 'Contact Rolls Nation',
+      description: 'Call us at +91-76968-33321 or visit our head office in Khanna, Punjab.',
+    },
+  });
+}
 
 export default function ContactPage() {
   return (
@@ -48,8 +60,8 @@ export default function ContactPage() {
                 </div>
                 <h3 className="text-xl font-bold text-white mb-4">Phone</h3>
                 <div className="space-y-2">
-                  <a href="tel:+917696833321" className="block text-zinc-400 hover:text-white transition-colors">+91-76968-33321</a>
-                  <a href="tel:+918000500038" className="block text-zinc-400 hover:text-white transition-colors">+91-80005-00038</a>
+                  <a href={PRIMARY_PHONE_HREF} data-analytics-source="contact_page_call_primary" className="block text-zinc-400 hover:text-white transition-colors">{PRIMARY_PHONE_LABEL}</a>
+                  <a href={SECONDARY_PHONE_HREF} data-analytics-source="contact_page_call_secondary" className="block text-zinc-400 hover:text-white transition-colors">{SECONDARY_PHONE_LABEL}</a>
                 </div>
               </div>
 
@@ -59,7 +71,7 @@ export default function ContactPage() {
                 </div>
                 <h3 className="text-xl font-bold text-white mb-4">Email</h3>
                 <div className="space-y-2">
-                  <a href="mailto:info@rollsnation.in" className="block text-zinc-400 hover:text-white transition-colors wrap-break-word">info@rollsnation.in</a>
+                  <a href={CONTACT_EMAIL_HREF} data-analytics-source="contact_page_email" className="block text-zinc-400 hover:text-white transition-colors wrap-break-word">{CONTACT_EMAIL}</a>
                 </div>
               </div>
             </div>
@@ -89,13 +101,13 @@ export default function ContactPage() {
               <h4 className="text-white font-bold mb-4 uppercase text-sm tracking-widest">Connect With Us</h4>
               <div className="flex gap-4">
                 {[
-                  { Icon: Facebook, color: 'hover:bg-blue-600', url: "https://www.facebook.com/rollsnationindia" },
-                  { Icon: Instagram, color: 'hover:bg-pink-600', url: "https://www.instagram.com/rollsnationindia" },
-                  { Icon: Twitter, color: 'hover:bg-blue-400', url: "https://x.com/rolls_nation" },
-                  { Icon: Linkedin, color: 'hover:bg-blue-700', url: "https://www.linkedin.com/company/rolls-nation" },
-                  { Icon: Youtube, color: 'hover:bg-red-600', url: "https://www.youtube.com/@rollsnationindia" },
-                ].map(({ Icon, color, url }, idx) => (
-                  <a key={idx} href={url} target='_blank' className={`w-12 h-12 rounded-full bg-zinc-800 flex items-center justify-center text-white transition-all hover:-translate-y-1 ${color}`}>
+                  { Icon: Facebook, color: 'hover:bg-blue-600', url: SOCIAL_URLS.facebook, label: 'facebook' },
+                  { Icon: Instagram, color: 'hover:bg-pink-600', url: SOCIAL_URLS.instagram, label: 'instagram' },
+                  { Icon: Twitter, color: 'hover:bg-blue-400', url: SOCIAL_URLS.twitter, label: 'twitter' },
+                  { Icon: Linkedin, color: 'hover:bg-blue-700', url: SOCIAL_URLS.linkedin, label: 'linkedin' },
+                  { Icon: Youtube, color: 'hover:bg-red-600', url: SOCIAL_URLS.youtube, label: 'youtube' },
+                ].map(({ Icon, color, url, label }, idx) => (
+                  <a key={idx} href={url} target='_blank' rel="noopener noreferrer" data-analytics-source={`contact_page_social_${label}`} className={`w-12 h-12 rounded-full bg-zinc-800 flex items-center justify-center text-white transition-all hover:-translate-y-1 ${color}`}>
                     <Icon size={20} />
                   </a>
                 ))}

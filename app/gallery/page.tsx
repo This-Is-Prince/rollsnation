@@ -2,6 +2,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import { ArrowRight, Camera, Sparkles } from 'lucide-react';
+import { WHATSAPP_LINK } from '@/src/config/site';
+import { buildPageMetadata } from '@/src/lib/seo';
 
 const galleryItems = [
   { src: '/rollsnation.jpeg', alt: 'Rolls Nation seating zone and wall branding', title: 'Modern Dining Space' },
@@ -14,20 +16,19 @@ const galleryItems = [
   { src: '/pic.png', alt: 'Rolls Nation founder portrait', title: 'Founder Presence' },
 ];
 
-export const metadata: Metadata = {
-  title: 'Gallery | Rolls Nation Outlets, Interiors, Team & Brand Moments',
-  description:
-    'Explore the Rolls Nation gallery with outlet interiors, launch moments, team energy, and signature brand spaces across locations.',
-  alternates: {
-    canonical: 'https://rollsnationindia.in/gallery',
-  },
-  openGraph: {
-    title: 'Rolls Nation Gallery',
-    description: 'A visual showcase of outlets, team culture, and customer moments at Rolls Nation.',
-    url: 'https://rollsnationindia.in/gallery',
-    images: ['/rollsnation.jpeg'],
-  },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  return buildPageMetadata({
+    path: '/gallery',
+    title: 'Gallery | Rolls Nation Outlets, Interiors, Team & Brand Moments',
+    description:
+      'Explore the Rolls Nation gallery with outlet interiors, launch moments, team energy, and signature brand spaces across locations.',
+    openGraph: {
+      title: 'Rolls Nation Gallery',
+      description: 'A visual showcase of outlets, team culture, and customer moments at Rolls Nation.',
+      images: ['/rollsnation.jpeg'],
+    },
+  });
+}
 
 export default function GalleryPage() {
   return (
@@ -121,7 +122,8 @@ export default function GalleryPage() {
                   <ArrowRight className="h-4 w-4" />
                 </Link>
                 <a
-                  href="https://wa.me/917696833321"
+                  href={WHATSAPP_LINK}
+                  data-analytics-source="gallery_mid_whatsapp"
                   className="inline-flex items-center gap-2 rounded-full border border-zinc-700 px-8 py-4 text-sm font-bold uppercase tracking-wide text-white transition-colors hover:border-yellow-500 hover:text-yellow-500"
                 >
                   Franchise Enquiry
@@ -149,7 +151,8 @@ export default function GalleryPage() {
                 <ArrowRight className="h-4 w-4" />
               </Link>
               <a
-                href="https://wa.me/917696833321"
+                href={WHATSAPP_LINK}
+                data-analytics-source="gallery_footer_whatsapp"
                 className="inline-flex items-center gap-2 rounded-full border border-zinc-700 px-8 py-4 text-sm font-bold uppercase tracking-wide text-white transition-colors hover:border-yellow-500 hover:text-yellow-500"
               >
                 Start on WhatsApp

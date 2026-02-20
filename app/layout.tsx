@@ -13,6 +13,8 @@ import {
   moneyKeywords,
   primaryKeywords,
 } from "@/src/lib/franchiseSeoKeywords";
+import { absoluteUrl, getSiteOrigin } from "@/src/lib/site-url.server";
+import { PRIMARY_PHONE, SOCIAL_LINKS } from "@/src/config/site";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -24,80 +26,92 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  metadataBase: new URL("https://rollsnationindia.in"),
-  title: {
-    default: "Rolls Nation | Best Kathi Rolls Franchise in India",
-    template: "%s | Rolls Nation",
-  },
-  description:
-    "Kathi roll franchise in India with low investment models, strong ROI, and full setup support. Explore kathi roll franchise cost, Punjab opportunities, and step-by-step application guidance.",
-  keywords: [
-    ...primaryKeywords,
-    ...moneyKeywords,
-    ...locationKeywords,
-    ...broaderAttractorKeywords,
-    "Rolls Nation",
-    "best fast food franchise",
-  ],
-  authors: [{ name: "Rolls Nation" }],
-  creator: "Rolls Nation",
-  publisher: "Rolls Nation",
-  formatDetection: {
-    email: false,
-    address: false,
-    telephone: false,
-  },
-  openGraph: {
-    title: "Rolls Nation - Best Kathi Rolls Franchise in India",
+export async function generateMetadata(): Promise<Metadata> {
+  const siteOrigin = await getSiteOrigin();
+
+  return {
+    metadataBase: new URL(siteOrigin),
+    title: {
+      default: "Rolls Nation | Best Kathi Rolls Franchise in India",
+      template: "%s | Rolls Nation",
+    },
     description:
-      "Start your own kathi roll and wraps franchise with Rolls Nation. Get cost, investment, and franchise process details for India and Punjab.",
-    url: "https://rollsnationindia.in",
-    siteName: "Rolls Nation",
-    images: [
-      {
-        url: "/rollsnation.jpeg",
-        width: 1200,
-        height: 630,
-        alt: "Rolls Nation Franchise",
-      },
+      "Kathi roll franchise in India with low investment models, strong ROI, and full setup support. Explore kathi roll franchise cost, Punjab opportunities, and step-by-step application guidance.",
+    keywords: [
+      ...primaryKeywords,
+      ...moneyKeywords,
+      ...locationKeywords,
+      ...broaderAttractorKeywords,
+      "Rolls Nation",
+      "best fast food franchise",
     ],
-    locale: "en_IN",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Rolls Nation | Kathi Roll Franchise in India",
-    description:
-      "Low investment kathi roll franchise with strong ROI and complete support.",
-    images: ["/rollsnation.jpeg"],
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
+    authors: [{ name: "Rolls Nation" }],
+    creator: "Rolls Nation",
+    publisher: "Rolls Nation",
+    formatDetection: {
+      email: false,
+      address: false,
+      telephone: false,
+    },
+    openGraph: {
+      title: "Rolls Nation - Best Kathi Rolls Franchise in India",
+      description:
+        "Start your own kathi roll and wraps franchise with Rolls Nation. Get cost, investment, and franchise process details for India and Punjab.",
+      url: siteOrigin,
+      siteName: "Rolls Nation",
+      images: [
+        {
+          url: "/rollsnation.jpeg",
+          width: 1200,
+          height: 630,
+          alt: "Rolls Nation Franchise",
+        },
+      ],
+      locale: "en_IN",
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Rolls Nation | Kathi Roll Franchise in India",
+      description:
+        "Low investment kathi roll franchise with strong ROI and complete support.",
+      images: ["/rollsnation.jpeg"],
+    },
+    robots: {
       index: true,
       follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+      },
     },
-  },
-};
+  };
+}
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const [siteOrigin, siteImageUrl, siteLogoUrl] = await Promise.all([
+    getSiteOrigin(),
+    absoluteUrl("/rollsnation.jpeg"),
+    absoluteUrl("/rollsnation.webp"),
+  ]);
+
+  const sameAsLinks = SOCIAL_LINKS.map((link) => link.href);
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": ["Restaurant", "LocalBusiness"],
     name: "Rolls Nation",
-    image: "https://rollsnationindia.in/rollsnation.jpeg",
-    "@id": "https://rollsnationindia.in",
-    url: "https://rollsnationindia.in",
-    telephone: "+917696833321",
+    image: siteImageUrl,
+    "@id": siteOrigin,
+    url: siteOrigin,
+    telephone: PRIMARY_PHONE,
     servesCuisine: "Indian",
     areaServed: ["India", "Punjab", "Ludhiana", "Chandigarh", "North India"],
     description:
@@ -130,13 +144,7 @@ export default function RootLayout({
       opens: "10:00",
       closes: "23:00",
     },
-    sameAs: [
-      "https://www.facebook.com/rollsnationindia",
-      "https://www.instagram.com/rollsnationindia",
-      "https://x.com/rolls_nation",
-      "https://www.linkedin.com/company/rolls-nation",
-      "https://www.youtube.com/@rollsnationindia",
-    ],
+    sameAs: sameAsLinks,
     knowsAbout: allFranchiseSeoKeywords,
   };
 
@@ -144,8 +152,8 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": "Organization",
     name: "Rolls Nation",
-    url: "https://rollsnationindia.in",
-    logo: "https://rollsnationindia.in/rollsnation.webp",
+    url: siteOrigin,
+    logo: siteLogoUrl,
     contactPoint: {
       "@type": "ContactPoint",
       telephone: "+91-76968-33321",
@@ -161,13 +169,7 @@ export default function RootLayout({
       postalCode: "141401",
       addressCountry: "IN",
     },
-    sameAs: [
-      "https://www.facebook.com/rollsnationindia",
-      "https://www.instagram.com/rollsnationindia",
-      "https://x.com/rolls_nation",
-      "https://www.linkedin.com/company/rolls-nation",
-      "https://www.youtube.com/@rollsnationindia",
-    ],
+    sameAs: sameAsLinks,
   };
 
   return (

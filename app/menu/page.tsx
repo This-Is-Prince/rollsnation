@@ -2,6 +2,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import { ArrowRight, CircleCheckBig, Sparkles } from 'lucide-react';
+import { WHATSAPP_LINK } from '@/src/config/site';
+import { buildPageMetadata } from '@/src/lib/seo';
 
 const signatureRolls = [
   { name: 'Aloo Veggie Roll', single: 75, double: 95 },
@@ -37,20 +39,19 @@ const shakesAndCoolers = [
   { name: 'Passion Fruit Cooler', price: 99 },
 ];
 
-export const metadata: Metadata = {
-  title: 'Our Menu | Rolls Nation Kathi Rolls, Burgers, Wraps & Beverages',
-  description:
-    'Explore the Rolls Nation menu with signature kathi rolls, burgers, wraps, shakes, coolers, fries, and combo meals.',
-  alternates: {
-    canonical: 'https://rollsnationindia.in/menu',
-  },
-  openGraph: {
-    title: 'Rolls Nation Menu',
-    description: 'Pocket-friendly bites with premium taste: rolls, burgers, beverages, and combo meals.',
-    url: 'https://rollsnationindia.in/menu',
-    images: ['/rollsnation.jpeg'],
-  },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  return buildPageMetadata({
+    path: '/menu',
+    title: 'Our Menu | Rolls Nation Kathi Rolls, Burgers, Wraps & Beverages',
+    description:
+      'Explore the Rolls Nation menu with signature kathi rolls, burgers, wraps, shakes, coolers, fries, and combo meals.',
+    openGraph: {
+      title: 'Rolls Nation Menu',
+      description: 'Pocket-friendly bites with premium taste: rolls, burgers, beverages, and combo meals.',
+      images: ['/rollsnation.jpeg'],
+    },
+  });
+}
 
 export default function MenuPage() {
   return (
@@ -181,7 +182,8 @@ export default function MenuPage() {
 
               <div className="mt-8 flex flex-wrap gap-4">
                 <a
-                  href="https://wa.me/917696833321"
+                  href={WHATSAPP_LINK}
+                  data-analytics-source="menu_mid_whatsapp"
                   className="inline-flex items-center gap-2 rounded-full bg-yellow-500 px-8 py-4 text-sm font-bold uppercase tracking-wide text-black transition-all hover:scale-105 hover:bg-yellow-400"
                 >
                   Order / Enquire
@@ -209,7 +211,8 @@ export default function MenuPage() {
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-4">
               <a
-                href="https://wa.me/917696833321"
+                href={WHATSAPP_LINK}
+                data-analytics-source="menu_footer_whatsapp"
                 className="inline-flex items-center gap-2 rounded-full bg-yellow-500 px-8 py-4 text-sm font-bold uppercase tracking-wide text-black transition-all hover:scale-105 hover:bg-yellow-400"
               >
                 Get Complete Menu

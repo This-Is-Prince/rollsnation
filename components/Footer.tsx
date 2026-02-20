@@ -1,6 +1,16 @@
 import { Facebook, Instagram, Twitter, Linkedin, Phone, Mail, MapPin, Youtube, ArrowUpRight, Sparkles } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
+import {
+  CONTACT_EMAIL,
+  CONTACT_EMAIL_HREF,
+  PRIMARY_PHONE_HREF,
+  PRIMARY_PHONE_LABEL,
+  SECONDARY_PHONE_HREF,
+  SECONDARY_PHONE_LABEL,
+  SOCIAL_URLS,
+  WHATSAPP_LINK,
+} from '@/src/config/site';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -15,11 +25,11 @@ export default function Footer() {
   ];
 
   const socialLinks = [
-    { icon: Facebook, href: "https://www.facebook.com/rollsnationindia", label: "Facebook", hoverBg: "hover:bg-[#1877F2]" },
-    { icon: Instagram, href: "https://www.instagram.com/rollsnationindia", label: "Instagram", hoverBg: "hover:bg-gradient-to-br hover:from-purple-600 hover:via-pink-500 hover:to-orange-400" },
-    { icon: Twitter, href: "https://x.com/rolls_nation", label: "Twitter", hoverBg: "hover:bg-zinc-600" },
-    { icon: Linkedin, href: "https://www.linkedin.com/company/rolls-nation", label: "LinkedIn", hoverBg: "hover:bg-[#0A66C2]" },
-    { icon: Youtube, href: "https://www.youtube.com/@rollsnationindia", label: "YouTube", hoverBg: "hover:bg-[#FF0000]" },
+    { icon: Facebook, href: SOCIAL_URLS.facebook, label: "Facebook", hoverBg: "hover:bg-[#1877F2]" },
+    { icon: Instagram, href: SOCIAL_URLS.instagram, label: "Instagram", hoverBg: "hover:bg-gradient-to-br hover:from-purple-600 hover:via-pink-500 hover:to-orange-400" },
+    { icon: Twitter, href: SOCIAL_URLS.twitter, label: "Twitter", hoverBg: "hover:bg-zinc-600" },
+    { icon: Linkedin, href: SOCIAL_URLS.linkedin, label: "LinkedIn", hoverBg: "hover:bg-[#0A66C2]" },
+    { icon: Youtube, href: SOCIAL_URLS.youtube, label: "YouTube", hoverBg: "hover:bg-[#FF0000]" },
   ];
 
   return (
@@ -57,6 +67,7 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   href={href}
                   aria-label={label}
+                  data-analytics-source={`footer_social_${label.toLowerCase()}`}
                   className={`w-10 h-10 bg-zinc-900 border border-zinc-800 rounded-xl flex items-center justify-center text-zinc-400 hover:text-white hover:border-transparent transition-all duration-300 ${hoverBg}`}
                 >
                   <Icon size={18} />
@@ -126,11 +137,11 @@ export default function Footer() {
                     <Phone className="w-4 h-4 text-yellow-500" />
                   </span>
                   <div className="flex flex-col">
-                    <a href="tel:+917696833321" className="text-zinc-300 hover:text-white transition-colors text-sm font-medium">
-                      +91 76968-33321
+                    <a href={PRIMARY_PHONE_HREF} data-analytics-source="footer_call_primary" className="text-zinc-300 hover:text-white transition-colors text-sm font-medium">
+                      {PRIMARY_PHONE_LABEL}
                     </a>
-                    <a href="tel:+918000500038" className="text-zinc-400 hover:text-white transition-colors text-sm">
-                      +91 80005-00038
+                    <a href={SECONDARY_PHONE_HREF} data-analytics-source="footer_call_secondary" className="text-zinc-400 hover:text-white transition-colors text-sm">
+                      {SECONDARY_PHONE_LABEL}
                     </a>
                   </div>
                 </div>
@@ -142,8 +153,8 @@ export default function Footer() {
                     <Mail className="w-4 h-4 text-yellow-500" />
                   </span>
                   <div className="flex flex-col">
-                    <a href="mailto:info@rollsnation.in" className="text-zinc-300 hover:text-white transition-colors text-sm font-medium">
-                      info@rollsnation.in
+                    <a href={CONTACT_EMAIL_HREF} data-analytics-source="footer_email" className="text-zinc-300 hover:text-white transition-colors text-sm font-medium">
+                      {CONTACT_EMAIL}
                     </a>
                   </div>
                 </div>
@@ -151,7 +162,8 @@ export default function Footer() {
 
               <div className="pt-4">
                 <a
-                  href="https://wa.me/917696833321"
+                  href={WHATSAPP_LINK}
+                  data-analytics-source="footer_whatsapp"
                   className="group inline-flex items-center gap-2 bg-linear-to-r from-yellow-500 to-amber-500 hover:from-yellow-400 hover:to-amber-400 text-black px-5 py-2.5 rounded-xl font-bold text-sm transition-all shadow-lg shadow-yellow-500/20 hover:shadow-yellow-500/30"
                 >
                   <Sparkles size={16} />

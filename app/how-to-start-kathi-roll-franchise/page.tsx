@@ -1,6 +1,9 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import { ArrowRight, FileText, MapPin, Settings, Store, Users } from 'lucide-react';
+import { WHATSAPP_LINK } from '@/src/config/site';
+import { buildPageMetadata } from '@/src/lib/seo';
+import { absoluteUrl } from '@/src/lib/site-url.server';
 import {
   actionKeywords,
   allFranchiseSeoKeywords,
@@ -65,24 +68,29 @@ const faqs = [
   },
 ];
 
-export const metadata: Metadata = {
-  title: 'How to Start Kathi Roll Franchise in India | Process, Requirements & Application',
-  description:
-    'Learn how to start kathi roll franchise with full process, requirements, application steps, investment model selection, and launch support for India and Punjab.',
-  keywords: [...actionKeywords, ...primaryKeywords, ...longTailKeywords.slice(0, 12), ...benefitKeywords.slice(0, 6)],
-  alternates: {
-    canonical: 'https://rollsnationindia.in/how-to-start-kathi-roll-franchise',
-  },
-  openGraph: {
-    title: 'How to Start Kathi Roll Franchise | Rolls Nation',
+export async function generateMetadata(): Promise<Metadata> {
+  return buildPageMetadata({
+    path: '/how-to-start-kathi-roll-franchise',
+    title: 'How to Start Kathi Roll Franchise in India | Process, Requirements & Application',
     description:
-      'Step-by-step guide to apply for kathi roll franchise, complete documentation, setup the outlet, train staff, and launch successfully.',
-    url: 'https://rollsnationindia.in/how-to-start-kathi-roll-franchise',
-    images: ['/rollsnation.jpeg'],
-  },
-};
+      'Learn how to start kathi roll franchise with full process, requirements, application steps, investment model selection, and launch support for India and Punjab.',
+    keywords: [...actionKeywords, ...primaryKeywords, ...longTailKeywords.slice(0, 12), ...benefitKeywords.slice(0, 6)],
+    openGraph: {
+      title: 'How to Start Kathi Roll Franchise | Rolls Nation',
+      description:
+        'Step-by-step guide to apply for kathi roll franchise, complete documentation, setup the outlet, train staff, and launch successfully.',
+      images: ['/rollsnation.jpeg'],
+    },
+  });
+}
 
-export default function HowToStartKathiRollFranchisePage() {
+export default async function HowToStartKathiRollFranchisePage() {
+  const [homeUrl, franchiseUrl, processPageUrl] = await Promise.all([
+    absoluteUrl('/'),
+    absoluteUrl('/franchise'),
+    absoluteUrl('/how-to-start-kathi-roll-franchise'),
+  ]);
+
   const faqSchema = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
@@ -119,19 +127,19 @@ export default function HowToStartKathiRollFranchisePage() {
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: 'https://rollsnationindia.in',
+        item: homeUrl,
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'Franchise',
-        item: 'https://rollsnationindia.in/franchise',
+        item: franchiseUrl,
       },
       {
         '@type': 'ListItem',
         position: 3,
         name: 'How to Start Kathi Roll Franchise',
-        item: 'https://rollsnationindia.in/how-to-start-kathi-roll-franchise',
+        item: processPageUrl,
       },
     ],
   };
@@ -166,7 +174,8 @@ export default function HowToStartKathiRollFranchisePage() {
           </p>
           <div className="mt-8 flex flex-wrap gap-4">
             <a
-              href="https://wa.me/917696833321"
+              href={WHATSAPP_LINK}
+              data-analytics-source="howto_hero_whatsapp"
               className="inline-flex items-center gap-2 rounded-full bg-yellow-500 px-8 py-4 text-sm font-bold uppercase tracking-wide text-black transition-all hover:scale-105 hover:bg-yellow-400"
             >
               Apply for Franchise
@@ -296,7 +305,8 @@ export default function HowToStartKathiRollFranchisePage() {
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-4">
               <a
-                href="https://wa.me/917696833321"
+                href={WHATSAPP_LINK}
+                data-analytics-source="howto_footer_whatsapp"
                 className="inline-flex items-center gap-2 rounded-full bg-yellow-500 px-8 py-4 text-sm font-bold uppercase tracking-wide text-black transition-all hover:scale-105 hover:bg-yellow-400"
               >
                 Start on WhatsApp

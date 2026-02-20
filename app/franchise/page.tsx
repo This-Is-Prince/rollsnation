@@ -2,6 +2,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import { ArrowRight, BadgeIndianRupee, Building2, Clock3, Handshake, Landmark, MapPin, Rocket, ShieldCheck, Store, Users } from 'lucide-react';
+import { PRIMARY_PHONE_HREF, PRIMARY_PHONE_LABEL, WHATSAPP_LINK } from '@/src/config/site';
+import { buildPageMetadata } from '@/src/lib/seo';
+import { absoluteUrl } from '@/src/lib/site-url.server';
 import {
   actionKeywords,
   benefitKeywords,
@@ -107,24 +110,28 @@ const franchiseFaqs = [
   },
 ];
 
-export const metadata: Metadata = {
-  title: 'Franchise | Rolls Nation - Best Food Franchise Opportunity',
-  description:
-    'Own a Rolls Nation kathi roll franchise in India with low investment options, high ROI, FOCO/FOFO operations, and complete setup support.',
-  keywords: [...primaryKeywords, ...moneyKeywords.slice(0, 10), ...actionKeywords.slice(0, 8), ...benefitKeywords.slice(0, 8), ...locationKeywords.slice(0, 6)],
-  alternates: {
-    canonical: 'https://rollsnationindia.in/franchise',
-  },
-  openGraph: {
-    title: 'Rolls Nation Franchise Models',
+export async function generateMetadata(): Promise<Metadata> {
+  return buildPageMetadata({
+    path: '/franchise',
+    title: 'Franchise | Rolls Nation - Best Food Franchise Opportunity',
     description:
-      'Explore Rolls Nation franchise models, investment details, payback period, and complete franchise support.',
-    url: 'https://rollsnationindia.in/franchise',
-    images: ['/rollsnation.jpeg'],
-  },
-};
+      'Own a Rolls Nation kathi roll franchise in India with low investment options, high ROI, FOCO/FOFO operations, and complete setup support.',
+    keywords: [...primaryKeywords, ...moneyKeywords.slice(0, 10), ...actionKeywords.slice(0, 8), ...benefitKeywords.slice(0, 8), ...locationKeywords.slice(0, 6)],
+    openGraph: {
+      title: 'Rolls Nation Franchise Models',
+      description:
+        'Explore Rolls Nation franchise models, investment details, payback period, and complete franchise support.',
+      images: ['/rollsnation.jpeg'],
+    },
+  });
+}
 
-export default function FranchisePage() {
+export default async function FranchisePage() {
+  const [homeUrl, franchiseUrl] = await Promise.all([
+    absoluteUrl('/'),
+    absoluteUrl('/franchise'),
+  ]);
+
   const faqSchema = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
@@ -146,13 +153,13 @@ export default function FranchisePage() {
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: 'https://rollsnationindia.in',
+        item: homeUrl,
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'Franchise',
-        item: 'https://rollsnationindia.in/franchise',
+        item: franchiseUrl,
       },
     ],
   };
@@ -188,17 +195,19 @@ export default function FranchisePage() {
 
             <div className="mt-10 flex flex-wrap gap-4">
               <a
-                href="https://wa.me/917696833321"
+                href={WHATSAPP_LINK}
+                data-analytics-source="franchise_hero_whatsapp"
                 className="inline-flex items-center gap-2 rounded-full bg-yellow-500 px-8 py-4 text-sm font-bold uppercase tracking-wide text-black transition-all hover:scale-105 hover:bg-yellow-400"
               >
                 Get Franchise
                 <ArrowRight className="h-4 w-4" />
               </a>
               <a
-                href="tel:+917696833321"
+                href={PRIMARY_PHONE_HREF}
+                data-analytics-source="franchise_hero_call"
                 className="inline-flex items-center gap-2 rounded-full border border-zinc-700 px-8 py-4 text-sm font-bold uppercase tracking-wide text-white transition-colors hover:border-yellow-500 hover:text-yellow-500"
               >
-                Call +91 76968-33321
+                Call {PRIMARY_PHONE_LABEL}
               </a>
             </div>
           </div>
@@ -421,18 +430,20 @@ export default function FranchisePage() {
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-4">
               <a
-                href="https://wa.me/917696833321"
+                href={WHATSAPP_LINK}
+                data-analytics-source="franchise_footer_whatsapp"
                 className="inline-flex items-center gap-2 rounded-full bg-yellow-500 px-8 py-4 text-sm font-bold uppercase tracking-wide text-black transition-all hover:scale-105 hover:bg-yellow-400"
               >
                 Start on WhatsApp
                 <ArrowRight className="h-4 w-4" />
               </a>
               <a
-                href="tel:+917696833321"
+                href={PRIMARY_PHONE_HREF}
+                data-analytics-source="franchise_footer_call"
                 className="inline-flex items-center gap-2 rounded-full border border-zinc-700 px-8 py-4 text-sm font-bold uppercase tracking-wide text-white transition-colors hover:border-yellow-500 hover:text-yellow-500"
               >
                 <Clock3 className="h-4 w-4" />
-                Call +91 76968-33321
+                Call {PRIMARY_PHONE_LABEL}
               </a>
             </div>
           </div>

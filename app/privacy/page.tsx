@@ -1,14 +1,21 @@
 import type { Metadata } from 'next';
+import {
+  CONTACT_EMAIL,
+  CONTACT_EMAIL_HREF,
+  PRIMARY_PHONE_HREF,
+  PRIMARY_PHONE_LABEL,
+} from '@/src/config/site';
+import { buildPageMetadata } from '@/src/lib/seo';
 
-export const revalidate = 86400;
-export const dynamic = 'force-static';
-
-export const metadata: Metadata = {
-  title: 'Privacy Policy | Rolls Nation',
-  description: 'Privacy Policy for Rolls Nation India. Learn how we collect, use, and protect your personal information.',
-  alternates: { canonical: 'https://rollsnationindia.in/privacy' },
-  robots: { index: true, follow: true },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  return buildPageMetadata({
+    path: '/privacy',
+    title: 'Privacy Policy | Rolls Nation',
+    description: 'Privacy Policy for Rolls Nation India. Learn how we collect, use, and protect your personal information.',
+    robots: { index: true, follow: true },
+    includeOpenGraph: false,
+  });
+}
 
 export default function PrivacyPage() {
   return (
@@ -53,7 +60,7 @@ export default function PrivacyPage() {
 
           <section>
             <h2 className="text-2xl font-bold text-white mb-4">Your Rights</h2>
-            <p>You have the right to request deletion of your personal data at any time. Contact us at info@rollsnation.in with your request and we will process it within 30 days.</p>
+            <p>You have the right to request deletion of your personal data at any time. Contact us at {CONTACT_EMAIL} with your request and we will process it within 30 days.</p>
           </section>
 
           <section>
@@ -61,8 +68,8 @@ export default function PrivacyPage() {
             <p>For any privacy concerns or data deletion requests, contact us at:</p>
             <div className="mt-3 p-4 bg-zinc-900 rounded-xl border border-zinc-800">
               <p className="font-semibold">Rolls Nation India</p>
-              <p>Email: <a href="mailto:info@rollsnation.in" className="text-yellow-500 hover:underline">info@rollsnation.in</a></p>
-              <p>Phone: <a href="tel:+917696833321" className="text-yellow-500 hover:underline">+91 76968-33321</a></p>
+              <p>Email: <a href={CONTACT_EMAIL_HREF} data-analytics-source="privacy_email" className="text-yellow-500 hover:underline">{CONTACT_EMAIL}</a></p>
+              <p>Phone: <a href={PRIMARY_PHONE_HREF} data-analytics-source="privacy_call" className="text-yellow-500 hover:underline">{PRIMARY_PHONE_LABEL}</a></p>
               <p>Address: S.C.O 35, GF, Celebration Bazar, G.T Road Khanna, Punjab 141401</p>
             </div>
           </section>

@@ -3,17 +3,20 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Award, ArrowRight, Heart, TrendingUp, MapPin, Store, Users, Globe } from 'lucide-react';
+import { buildPageMetadata } from '@/src/lib/seo';
 
-export const metadata: Metadata = {
-    title: 'About Us | Rolls Nation - India\'s Fastest Growing Food Franchise',
-    description: 'From a single cart to a nationwide sensation. Rolls Nation now serves authentic rolls across 11+ states, 65+ cities, and 75+ outlets. Join our journey of flavor.',
-    openGraph: {
-        title: 'About Rolls Nation | 75+ Outlets Across India',
-        description: 'Discover the story behind India\'s favorite rolls. Now serving happiness in 65+ cities across 11 states.',
-        url: 'https://rollsnationindia.in/about',
-        images: ['/rollsnation.jpeg'], 
-    },
-};
+export async function generateMetadata(): Promise<Metadata> {
+    return buildPageMetadata({
+        path: '/about',
+        title: 'About Us | Rolls Nation - India\'s Fastest Growing Food Franchise',
+        description: 'From a single cart to a nationwide sensation. Rolls Nation now serves authentic rolls across 11+ states, 65+ cities, and 75+ outlets. Join our journey of flavor.',
+        openGraph: {
+            title: 'About Rolls Nation | 75+ Outlets Across India',
+            description: 'Discover the story behind India\'s favorite rolls. Now serving happiness in 65+ cities across 11 states.',
+            images: ['/rollsnation.jpeg'], 
+        },
+    });
+}
 
 export default function AboutPage() {
     const teams = [

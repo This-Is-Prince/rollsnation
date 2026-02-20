@@ -1,6 +1,9 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import { ArrowRight, Compass, MapPin, Phone, Store, TrendingUp } from 'lucide-react';
+import { PRIMARY_PHONE_HREF, PRIMARY_PHONE_LABEL, SOCIAL_LINKS, WHATSAPP_LINK } from '@/src/config/site';
+import { buildPageMetadata } from '@/src/lib/seo';
+import { absoluteUrl } from '@/src/lib/site-url.server';
 import {
   allFranchiseSeoKeywords,
   broaderAttractorKeywords,
@@ -37,24 +40,30 @@ const faqs = [
   },
 ];
 
-export const metadata: Metadata = {
-  title: 'Kathi Roll Franchise in Punjab & Ludhiana | Rolls Franchise Opportunity',
-  description:
-    'Explore kathi roll franchise in Punjab, Ludhiana, Chandigarh, and North India with low investment formats, quick setup support, and strong ROI potential.',
-  keywords: [...locationKeywords, ...primaryKeywords, ...broaderAttractorKeywords, ...hindiAndHinglishKeywords],
-  alternates: {
-    canonical: 'https://rollsnationindia.in/kathi-roll-franchise-in-punjab',
-  },
-  openGraph: {
-    title: 'Kathi Roll Franchise in Punjab | Rolls Nation',
+export async function generateMetadata(): Promise<Metadata> {
+  return buildPageMetadata({
+    path: '/kathi-roll-franchise-in-punjab',
+    title: 'Kathi Roll Franchise in Punjab & Ludhiana | Rolls Franchise Opportunity',
     description:
-      'Get city-focused support for kathi roll franchise opportunity in Punjab, Ludhiana, and North India with full setup and operational assistance.',
-    url: 'https://rollsnationindia.in/kathi-roll-franchise-in-punjab',
-    images: ['/rollsnation.jpeg'],
-  },
-};
+      'Explore kathi roll franchise in Punjab, Ludhiana, Chandigarh, and North India with low investment formats, quick setup support, and strong ROI potential.',
+    keywords: [...locationKeywords, ...primaryKeywords, ...broaderAttractorKeywords, ...hindiAndHinglishKeywords],
+    openGraph: {
+      title: 'Kathi Roll Franchise in Punjab | Rolls Nation',
+      description:
+        'Get city-focused support for kathi roll franchise opportunity in Punjab, Ludhiana, and North India with full setup and operational assistance.',
+      images: ['/rollsnation.jpeg'],
+    },
+  });
+}
 
-export default function KathiRollFranchiseInPunjabPage() {
+export default async function KathiRollFranchiseInPunjabPage() {
+  const [homeUrl, franchiseUrl, punjabPageUrl, heroImageUrl] = await Promise.all([
+    absoluteUrl('/'),
+    absoluteUrl('/franchise'),
+    absoluteUrl('/kathi-roll-franchise-in-punjab'),
+    absoluteUrl('/rollsnation.jpeg'),
+  ]);
+
   const faqSchema = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
@@ -76,19 +85,19 @@ export default function KathiRollFranchiseInPunjabPage() {
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: 'https://rollsnationindia.in',
+        item: homeUrl,
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'Franchise',
-        item: 'https://rollsnationindia.in/franchise',
+        item: franchiseUrl,
       },
       {
         '@type': 'ListItem',
         position: 3,
         name: 'Kathi Roll Franchise in Punjab',
-        item: 'https://rollsnationindia.in/kathi-roll-franchise-in-punjab',
+        item: punjabPageUrl,
       },
     ],
   };
@@ -97,9 +106,9 @@ export default function KathiRollFranchiseInPunjabPage() {
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
     name: 'Rolls Nation Franchise Enquiry - Punjab',
-    url: 'https://rollsnationindia.in/kathi-roll-franchise-in-punjab',
+    url: punjabPageUrl,
     telephone: '+917696833321',
-    image: 'https://rollsnationindia.in/rollsnation.jpeg',
+    image: heroImageUrl,
     address: {
       '@type': 'PostalAddress',
       streetAddress: 'S.C.O 35, GF, Celebration Bazar, G.T Road',
@@ -109,13 +118,7 @@ export default function KathiRollFranchiseInPunjabPage() {
       addressCountry: 'IN',
     },
     areaServed: ['Punjab', 'Ludhiana', 'Chandigarh', 'North India', 'Delhi', 'Haryana', 'Himachal Pradesh'],
-    sameAs: [
-      'https://www.facebook.com/rollsnationindia',
-      'https://www.instagram.com/rollsnationindia',
-      'https://x.com/rolls_nation',
-      'https://www.linkedin.com/company/rolls-nation',
-      'https://www.youtube.com/@rollsnationindia',
-    ],
+    sameAs: SOCIAL_LINKS.map((socialLink) => socialLink.href),
   };
 
   return (
@@ -147,18 +150,20 @@ export default function KathiRollFranchiseInPunjabPage() {
           </p>
           <div className="mt-8 flex flex-wrap gap-4">
             <a
-              href="https://wa.me/917696833321"
+              href={WHATSAPP_LINK}
+              data-analytics-source="punjab_hero_whatsapp"
               className="inline-flex items-center gap-2 rounded-full bg-yellow-500 px-8 py-4 text-sm font-bold uppercase tracking-wide text-black transition-all hover:scale-105 hover:bg-yellow-400"
             >
               Enquire for Punjab
               <ArrowRight className="h-4 w-4" />
             </a>
             <a
-              href="tel:+917696833321"
+              href={PRIMARY_PHONE_HREF}
+              data-analytics-source="punjab_hero_call"
               className="inline-flex items-center gap-2 rounded-full border border-zinc-700 px-8 py-4 text-sm font-bold uppercase tracking-wide text-white transition-colors hover:border-yellow-500 hover:text-yellow-500"
             >
               <Phone className="h-4 w-4" />
-              Call +91 76968-33321
+              Call {PRIMARY_PHONE_LABEL}
             </a>
           </div>
         </div>
@@ -260,7 +265,8 @@ export default function KathiRollFranchiseInPunjabPage() {
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-4">
               <a
-                href="https://wa.me/917696833321"
+                href={WHATSAPP_LINK}
+                data-analytics-source="punjab_footer_whatsapp"
                 className="inline-flex items-center gap-2 rounded-full bg-yellow-500 px-8 py-4 text-sm font-bold uppercase tracking-wide text-black transition-all hover:scale-105 hover:bg-yellow-400"
               >
                 Start Franchise Enquiry

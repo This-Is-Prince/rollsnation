@@ -1,6 +1,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import type { Metadata } from 'next';
+import { buildPageMetadata } from '@/src/lib/seo';
+import { PRIMARY_PHONE_HREF, WHATSAPP_LINK } from '@/src/config/site';
 import { 
   Utensils, 
   Store, 
@@ -12,22 +14,22 @@ import {
   Star
 } from 'lucide-react';
 
-export const metadata: Metadata = {
-  title: 'Kathi Roll Franchise in India | Low Investment Fast Food Franchise',
-  description:
-    'Explore Rolls Nation kathi roll franchise in India with low investment options, high ROI models, and complete support to start your own fast food business.',
-  keywords: [
-    'kathi roll franchise India',
-    'rolls franchise India',
-    'fast food franchise under 10 lakhs India',
-    'QSR franchise India low investment',
-    'street food franchise opportunity',
-    'Rolls Nation franchise',
-  ],
-  alternates: {
-    canonical: 'https://rollsnationindia.in/',
-  },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  return buildPageMetadata({
+    path: '/',
+    title: 'Kathi Roll Franchise in India | Low Investment Fast Food Franchise',
+    description:
+      'Explore Rolls Nation kathi roll franchise in India with low investment options, high ROI models, and complete support to start your own fast food business.',
+    keywords: [
+      'kathi roll franchise India',
+      'rolls franchise India',
+      'fast food franchise under 10 lakhs India',
+      'QSR franchise India low investment',
+      'street food franchise opportunity',
+      'Rolls Nation franchise',
+    ],
+  });
+}
 
 export default function HomePage() {
   return (
@@ -74,7 +76,8 @@ export default function HomePage() {
               <a
                 target='_blank'
                 rel='noopener noreferrer'
-                href="https://wa.me/917696833321"
+                href={WHATSAPP_LINK}
+                data-analytics-source="home_hero_whatsapp"
                 className="group border border-white hover:border-yellow-500 hover:text-yellow-500 text-white px-8 py-4 rounded-full font-bold uppercase tracking-wider transition-all hover:bg-zinc-900 flex items-center justify-center gap-2"
               >
                 Get Franchise
@@ -222,7 +225,8 @@ export default function HomePage() {
                     Franchise Model
                   </Link>
                   <a 
-                    href="tel:+917696833321" 
+                    href={PRIMARY_PHONE_HREF}
+                    data-analytics-source="home_cta_call"
                     className="bg-white text-black px-8 py-4 rounded-xl font-bold uppercase tracking-wider hover:scale-105 transition-transform text-center flex items-center justify-center gap-2"
                   >
                      Call 76968-33321

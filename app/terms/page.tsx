@@ -1,16 +1,26 @@
 import type { Metadata } from 'next';
+import {
+  CONTACT_EMAIL,
+  CONTACT_EMAIL_HREF,
+  PRIMARY_PHONE_HREF,
+  PRIMARY_PHONE_LABEL,
+} from '@/src/config/site';
+import { buildPageMetadata } from '@/src/lib/seo';
+import { getSiteHost } from '@/src/lib/site-url.server';
 
-export const revalidate = 86400;
-export const dynamic = 'force-static';
+export async function generateMetadata(): Promise<Metadata> {
+  return buildPageMetadata({
+    path: '/terms',
+    title: 'Terms of Service | Rolls Nation',
+    description: 'Terms of Service for Rolls Nation India. Read our terms for using the website and franchise information.',
+    robots: { index: true, follow: true },
+    includeOpenGraph: false,
+  });
+}
 
-export const metadata: Metadata = {
-  title: 'Terms of Service | Rolls Nation',
-  description: 'Terms of Service for Rolls Nation India. Read our terms for using the website and franchise information.',
-  alternates: { canonical: 'https://rollsnationindia.in/terms' },
-  robots: { index: true, follow: true },
-};
+export default async function TermsPage() {
+  const siteHost = await getSiteHost();
 
-export default function TermsPage() {
   return (
     <div className="min-h-screen bg-black pt-20 text-white">
       <div className="container mx-auto px-6 py-20 max-w-4xl">
@@ -20,7 +30,7 @@ export default function TermsPage() {
         <div className="space-y-10 text-zinc-300 leading-relaxed">
           <section>
             <h2 className="text-2xl font-bold text-white mb-4">Acceptance of Terms</h2>
-            <p>By accessing and using rollsnationindia.in, you agree to be bound by these Terms of Service and all applicable laws and regulations. If you do not agree with any of these terms, you are prohibited from using this site.</p>
+            <p>By accessing and using {siteHost}, you agree to be bound by these Terms of Service and all applicable laws and regulations. If you do not agree with any of these terms, you are prohibited from using this site.</p>
           </section>
 
           <section>
@@ -59,8 +69,8 @@ export default function TermsPage() {
             <p>For any questions regarding these terms, contact us at:</p>
             <div className="mt-3 p-4 bg-zinc-900 rounded-xl border border-zinc-800">
               <p className="font-semibold">Rolls Nation India</p>
-              <p>Email: <a href="mailto:info@rollsnation.in" className="text-yellow-500 hover:underline">info@rollsnation.in</a></p>
-              <p>Phone: <a href="tel:+917696833321" className="text-yellow-500 hover:underline">+91 76968-33321</a></p>
+              <p>Email: <a href={CONTACT_EMAIL_HREF} data-analytics-source="terms_email" className="text-yellow-500 hover:underline">{CONTACT_EMAIL}</a></p>
+              <p>Phone: <a href={PRIMARY_PHONE_HREF} data-analytics-source="terms_call" className="text-yellow-500 hover:underline">{PRIMARY_PHONE_LABEL}</a></p>
             </div>
           </section>
         </div>

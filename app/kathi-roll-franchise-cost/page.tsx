@@ -1,6 +1,9 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import { ArrowRight, BadgeIndianRupee, Calculator, CircleCheckBig, Clock3, Store, TrendingUp } from 'lucide-react';
+import { WHATSAPP_LINK } from '@/src/config/site';
+import { buildPageMetadata } from '@/src/lib/seo';
+import { absoluteUrl } from '@/src/lib/site-url.server';
 import {
   allFranchiseSeoKeywords,
   brandDiscoveryKeywords,
@@ -44,24 +47,29 @@ const faqs = [
   },
 ];
 
-export const metadata: Metadata = {
-  title: 'Kathi Roll Franchise Cost in India (2026) | Low Investment, High ROI',
-  description:
-    'Get complete kathi roll franchise cost, investment, franchise fee, ROI, payback period, and low investment models in India. Explore Punjab and Ludhiana opportunities.',
-  keywords: [...primaryKeywords, ...moneyKeywords, ...locationKeywords, ...longTailKeywords.slice(0, 8)],
-  alternates: {
-    canonical: 'https://rollsnationindia.in/kathi-roll-franchise-cost',
-  },
-  openGraph: {
-    title: 'Kathi Roll Franchise Cost in India | Rolls Nation',
+export async function generateMetadata(): Promise<Metadata> {
+  return buildPageMetadata({
+    path: '/kathi-roll-franchise-cost',
+    title: 'Kathi Roll Franchise Cost in India (2026) | Low Investment, High ROI',
     description:
-      'Understand kathi rolls franchise cost in India, total investment, franchise fee, and return potential for takeaway, food court, and dine-in models.',
-    url: 'https://rollsnationindia.in/kathi-roll-franchise-cost',
-    images: ['/rollsnation.jpeg'],
-  },
-};
+      'Get complete kathi roll franchise cost, investment, franchise fee, ROI, payback period, and low investment models in India. Explore Punjab and Ludhiana opportunities.',
+    keywords: [...primaryKeywords, ...moneyKeywords, ...locationKeywords, ...longTailKeywords.slice(0, 8)],
+    openGraph: {
+      title: 'Kathi Roll Franchise Cost in India | Rolls Nation',
+      description:
+        'Understand kathi rolls franchise cost in India, total investment, franchise fee, and return potential for takeaway, food court, and dine-in models.',
+      images: ['/rollsnation.jpeg'],
+    },
+  });
+}
 
-export default function KathiRollFranchiseCostPage() {
+export default async function KathiRollFranchiseCostPage() {
+  const [homeUrl, franchiseUrl, costPageUrl] = await Promise.all([
+    absoluteUrl('/'),
+    absoluteUrl('/franchise'),
+    absoluteUrl('/kathi-roll-franchise-cost'),
+  ]);
+
   const faqSchema = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
@@ -83,19 +91,19 @@ export default function KathiRollFranchiseCostPage() {
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: 'https://rollsnationindia.in',
+        item: homeUrl,
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'Franchise',
-        item: 'https://rollsnationindia.in/franchise',
+        item: franchiseUrl,
       },
       {
         '@type': 'ListItem',
         position: 3,
         name: 'Kathi Roll Franchise Cost',
-        item: 'https://rollsnationindia.in/kathi-roll-franchise-cost',
+        item: costPageUrl,
       },
     ],
   };
@@ -126,7 +134,8 @@ export default function KathiRollFranchiseCostPage() {
           </p>
           <div className="mt-8 flex flex-wrap gap-4">
             <a
-              href="https://wa.me/917696833321"
+              href={WHATSAPP_LINK}
+              data-analytics-source="cost_hero_whatsapp"
               className="inline-flex items-center gap-2 rounded-full bg-yellow-500 px-8 py-4 text-sm font-bold uppercase tracking-wide text-black transition-all hover:scale-105 hover:bg-yellow-400"
             >
               Get Cost Details
@@ -306,7 +315,8 @@ export default function KathiRollFranchiseCostPage() {
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-4">
               <a
-                href="https://wa.me/917696833321"
+                href={WHATSAPP_LINK}
+                data-analytics-source="cost_footer_whatsapp"
                 className="inline-flex items-center gap-2 rounded-full bg-yellow-500 px-8 py-4 text-sm font-bold uppercase tracking-wide text-black transition-all hover:scale-105 hover:bg-yellow-400"
               >
                 Enquire on WhatsApp

@@ -18,12 +18,27 @@ const nextConfig: NextConfig = {
         port: "",
         pathname: "/**",
       },
-      {
-        protocol: "https",
-        hostname: "rollsnation.in",
-        port: "",
-        pathname: "/**",
-      },
+      ...[
+        "rollsnationindia.in",
+        "rollsnationindia.com",
+        "rollsnation.in",
+        "rollnations.in",
+        "therollsnation.in",
+        "rollsnation.net",
+      ].flatMap((hostname) => [
+        {
+          protocol: "https" as const,
+          hostname,
+          port: "",
+          pathname: "/**",
+        },
+        {
+          protocol: "https" as const,
+          hostname: `www.${hostname}`,
+          port: "",
+          pathname: "/**",
+        },
+      ]),
     ],
     formats: ["image/avif", "image/webp"],
     minimumCacheTTL: 2592000,
