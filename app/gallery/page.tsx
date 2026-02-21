@@ -37,22 +37,22 @@ export default function GalleryPage() {
         </div>
       </section>
 
-      <section className="bg-linear-to-b from-zinc-950 via-black to-zinc-950 py-20 text-white">
+      <section className="bg-zinc-950 py-20 text-white">
         <div className="container mx-auto px-6">
           <PaginatedGallerySection
             sectionLabel="Food Section"
             heading="Food Highlights"
-            description="A curated food gallery from RN FOOD IMAGES with editable title and description metadata."
+            description="A visual feast of our signature dishes, from the iconic rolls to our flavorful sides and desserts. See what makes Rolls Nation a must-try for food lovers."
             items={foodGalleryItems}
             itemsPerPage={6}
           />
 
-          <div className="pt-16 h-px" />
+          <div className="mb-16 mt-16 h-px bg-linear-to-r from-transparent via-zinc-700 to-transparent" />
 
           <PaginatedGallerySection
             sectionLabel="Franchise Owner Section"
             heading="Recent Franchise Owners"
-            description="Owner spotlights pulled from FRANCHISE OWNERS ROLLS NATION filenames, with city-based titles and pagination."
+            description="Highlighting the achievements and stories of our recent franchise owners, showcasing their journey and success with Rolls Nation."
             items={franchiseOwnerGalleryItems}
             itemsPerPage={6}
           />
@@ -62,7 +62,7 @@ export default function GalleryPage() {
       <section className="border-y border-zinc-800 py-20">
         <div className="container mx-auto px-6">
           <div className="grid items-center gap-10 lg:grid-cols-2">
-            <div className="relative h-125 overflow-hidden rounded-3xl border border-zinc-800 bg-zinc-900">
+            <div className="relative h-125 overflow-hidden rounded-3xl border border-zinc-800 bg-zinc-900 md:h-128">
               <Image
                 src="/rollsnation.jpeg"
                 alt="Rolls Nation outlet environment"

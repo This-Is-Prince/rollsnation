@@ -2,7 +2,8 @@
 
 import Image from 'next/image';
 import { ChevronLeft, ChevronRight, X } from 'lucide-react';
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
+import { Dialog, DialogClose, DialogContent, DialogDescription, DialogTitle } from '@/components/ui/dialog';
 import type { GalleryItem } from '@/src/lib/gallery-data';
 
 type PaginatedGallerySectionProps = {
@@ -36,27 +37,6 @@ export default function PaginatedGallerySection({
   );
   const selectedItem = selectedItemIndex === null ? null : items[selectedItemIndex];
 
-  useEffect(() => {
-    if (selectedItemIndex === null) {
-      return;
-    }
-
-    const handleEscape = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
-        setSelectedItemIndex(null);
-      }
-    };
-
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
-    window.addEventListener('keydown', handleEscape);
-
-    return () => {
-      document.body.style.overflow = previousOverflow;
-      window.removeEventListener('keydown', handleEscape);
-    };
-  }, [selectedItemIndex]);
-
   const goToPage = (page: number) => {
     const nextPage = Math.max(1, Math.min(pageCount, page));
     setActivePage(nextPage);
@@ -75,12 +55,12 @@ export default function PaginatedGallerySection({
         {pageItems.map((item, index) => (
           <article
             key={`${item.src}-${item.title}`}
-            className="group overflow-hidden rounded-3xl border border-zinc-800/80 bg-zinc-900/80 shadow-xl shadow-black/25 transition-colors hover:border-yellow-500/60"
+            className="group overflow-hidden rounded-3xl border border-zinc-800/80 bg-zinc-900/70 shadow-xl shadow-black/25 backdrop-blur-sm transition-all hover:-translate-y-1 hover:border-yellow-500/60"
           >
             <button
               type="button"
               onClick={() => setSelectedItemIndex(pageStart + index)}
-              className="block w-full text-left"
+              className="block w-full text-left focus-visible:outline-none"
               aria-label={`Open image popup for ${item.title}`}
             >
               <div className="relative h-64 overflow-hidden">
@@ -89,10 +69,10 @@ export default function PaginatedGallerySection({
                   alt={item.alt}
                   fill
                   loading="lazy"
-                  className="object-cover transition-transform duration-700 group-hover:scale-110"
+                  className="object-cover transition-transform duration-700 group-hover:scale-110 group-focus-within:scale-110"
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
-                <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/0 to-black/0" />
+                <div className="absolute inset-0 bg-linear-to-t from-black/75 via-black/10 to-transparent" />
                 <div className="absolute bottom-3 left-3 rounded-full bg-black/70 px-3 py-1">
                   <p className="text-xs font-bold uppercase tracking-wide text-white">{item.title}</p>
                 </div>
@@ -149,48 +129,49 @@ export default function PaginatedGallerySection({
         </div>
       ) : null}
 
-      {selectedItem ? (
-        <div className="fixed inset-0 z-50 flex items-end bg-black/75 p-0 backdrop-blur-sm md:items-center md:justify-center md:p-6">
-          <button
-            type="button"
-            onClick={() => setSelectedItemIndex(null)}
-            className="absolute inset-0"
-            aria-label={`Close ${heading} image popup overlay`}
-          />
-          <div
-            role="dialog"
-            aria-modal="true"
-            aria-label={`${heading} image popup`}
-            className="relative z-10 w-full overflow-hidden rounded-t-3xl border border-zinc-800 bg-zinc-950 md:max-w-5xl md:rounded-3xl"
-          >
-            <button
-              type="button"
-              onClick={() => setSelectedItemIndex(null)}
-              className="absolute right-4 top-4 z-10 inline-flex h-10 w-10 items-center justify-center rounded-full border border-zinc-700 bg-black/70 text-zinc-100 transition-colors hover:border-yellow-500 hover:text-yellow-400"
-              aria-label={`Close ${heading} image popup`}
-            >
-              <X className="h-5 w-5" />
-            </button>
+      <Dialog open={selectedItemIndex !== null} onOpenChange={(open) => !open && setSelectedItemIndex(null)}>
+        <DialogContent
+          showCloseButton={false}
+          className="top-auto bottom-0 left-0 w-full max-w-none translate-x-0 translate-y-0 rounded-t-3xl rounded-b-none border-zinc-800 bg-zinc-950 p-0 text-white sm:top-1/2 sm:bottom-auto sm:left-1/2 sm:max-w-[95vw] sm:translate-x-[-50%] sm:translate-y-[-50%] sm:rounded-3xl lg:max-w-5xl"
+        >
+          <DialogTitle className="sr-only">{selectedItem ? selectedItem.title : `${heading} image viewer`}</DialogTitle>
+          <DialogDescription className="sr-only">
+            {selectedItem ? selectedItem.description : `${heading} selected image preview`}
+          </DialogDescription>
 
-            <div className="relative h-[48vh] min-h-72 w-full md:h-[70vh] md:min-h-96">
-              <Image
-                src={selectedItem.src}
-                alt={selectedItem.alt}
-                fill
-                priority
-                className="object-contain"
-                sizes="100vw"
-              />
-            </div>
+          {selectedItem ? (
+            <div className="relative">
+              <DialogClose asChild>
+                <button
+                  type="button"
+                  className="absolute right-3 top-3 z-10 inline-flex h-11 w-11 items-center justify-center rounded-full border border-zinc-600 bg-black/85 text-zinc-100 shadow-lg shadow-black/50 transition-colors hover:border-yellow-500 hover:text-yellow-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-500"
+                  aria-label={`Close ${heading} image viewer`}
+                >
+                  <X className="h-5 w-5" />
+                </button>
+              </DialogClose>
 
-            <div className="border-t border-zinc-800 bg-zinc-950/95 px-5 py-4 md:px-8 md:py-6">
-              <p className="text-xs font-bold uppercase tracking-[0.2em] text-yellow-500">{sectionLabel}</p>
-              <h3 className="mt-2 text-2xl font-black text-white">{selectedItem.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-zinc-300 md:text-base">{selectedItem.description}</p>
+              <div className="relative h-[52vh] min-h-80 w-full bg-black sm:h-[68vh] sm:min-h-104">
+                <Image
+                  src={selectedItem.src}
+                  alt={selectedItem.alt}
+                  fill
+                  priority
+                  className="object-cover p-3 sm:p-4"
+                  sizes="(max-width: 640px) 100vw, 95vw"
+                />
+                <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-linear-to-t from-black/85 to-transparent" />
+              </div>
+
+              <div className="border-t border-zinc-800 bg-zinc-950/95 px-5 py-4 sm:px-8 sm:py-6">
+                <p className="text-xs font-bold uppercase tracking-[0.2em] text-yellow-500">{sectionLabel}</p>
+                <h3 className="mt-2 text-xl font-black text-white sm:text-2xl">{selectedItem.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-zinc-300 sm:text-base">{selectedItem.description}</p>
+              </div>
             </div>
-          </div>
-        </div>
-      ) : null}
+          ) : null}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

@@ -126,7 +126,7 @@ const franchiseImageFiles = [
   'BANUR ROLLS NATION.webp',
   'ZIRAKPUR ROLLS NATION (1).webp',
   'NAGPUR ROLLS NATION.webp',
-  'KHARAR ROLLS NATION.webp',
+  'MALOUT ROLLS NATION (1).webp',
   'YAVATMAL MH RN.webp',
   'KHARGHAR NAVI MUMBAI RN (1).webp',
 ];
