@@ -1,6 +1,7 @@
 import {
   CONTACT_EMAIL,
   PRIMARY_PHONE,
+  SUPPORTED_SITE_DOMAINS,
   SOCIAL_URLS,
   WHATSAPP_LINK,
   type SocialPlatform,
@@ -22,11 +23,28 @@ type EventParams = Record<string, EventPrimitive | null | undefined>;
 
 type TrackingContext = {
   site_host?: string;
+  site_domain?: string;
+  site_origin?: string;
   page_path?: string;
   page_location?: string;
   page_title?: string;
   page_referrer?: string;
 };
+
+const supportedDomainSet = new Set<string>(SUPPORTED_SITE_DOMAINS);
+
+function normalizeHostname(hostname: string) {
+  return hostname.trim().toLowerCase().replace(/\.$/, "");
+}
+
+function resolveTrackedDomain(hostname: string) {
+  const normalizedHostname = normalizeHostname(hostname);
+  const withoutWww = normalizedHostname.startsWith("www.")
+    ? normalizedHostname.slice(4)
+    : normalizedHostname;
+
+  return supportedDomainSet.has(withoutWww) ? withoutWww : normalizedHostname;
+}
 
 function canTrack() {
   return (
@@ -55,10 +73,14 @@ export function getClientTrackingContext(): TrackingContext {
     return {};
   }
 
+  const siteHost = normalizeHostname(window.location.hostname);
+  const siteDomain = resolveTrackedDomain(siteHost);
   const pathWithQuery = `${window.location.pathname}${window.location.search}`;
 
   return {
-    site_host: window.location.hostname,
+    site_host: siteHost,
+    site_domain: siteDomain,
+    site_origin: window.location.origin,
     page_path: pathWithQuery,
     page_location: window.location.href,
     page_title: document.title,

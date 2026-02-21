@@ -8,6 +8,7 @@ import {
   isAnalyticsRuntimeEnabled,
 } from "@/src/lib/analytics-env";
 import {
+  getClientTrackingContext,
   inferSocialPlatformFromUrl,
   trackEmailClick,
   trackFranchiseWhatsAppClick,
@@ -51,8 +52,12 @@ function AnalyticsInner() {
       return;
     }
 
+    const trackingContext = getClientTrackingContext();
+
     window.gtag("set", "user_properties", {
-      site_host: window.location.hostname,
+      site_host: trackingContext.site_host ?? window.location.hostname,
+      site_domain: trackingContext.site_domain ?? window.location.hostname,
+      site_origin: trackingContext.site_origin ?? window.location.origin,
     });
   }, []);
 
