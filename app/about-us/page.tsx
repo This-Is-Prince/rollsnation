@@ -16,6 +16,7 @@ import {
     ShieldCheck,
 } from 'lucide-react';
 import { buildPageMetadata } from '@/src/lib/seo';
+import { aboutUsSeoKeywords } from '@/src/lib/brandSeoKeywords';
 
 export async function generateMetadata(): Promise<Metadata> {
     return buildPageMetadata({
@@ -23,6 +24,7 @@ export async function generateMetadata(): Promise<Metadata> {
         title: 'About Us | Rolls Nation - Founder Story, Mission, and Journey',
         description:
             'Discover how Rolls Nation started in 2010 under founder and CEO Uday Deep and grew from focused R&D to a fast-growing QSR and franchise brand.',
+        keywords: aboutUsSeoKeywords,
         openGraph: {
             title: 'About Rolls Nation | Journey Since 2010',
             description:
@@ -196,10 +198,11 @@ export default function AboutPage() {
                             </div>
 
                             <div className="rounded-2xl border border-zinc-800 bg-zinc-900/50 px-6 py-5">
-                                <p className="text-white text-lg md:text-xl font-black uppercase">Founder &amp; CEO</p>
+                                <p className="text-white text-lg md:text-xl font-black uppercase">Founder, Owner &amp; CEO</p>
                                 <p className="mt-1 text-yellow-500 text-xl md:text-2xl font-black tracking-wide">Uday Deep</p>
                                 <p className="mt-2 text-zinc-400 text-sm md:text-base leading-relaxed">
-                                    Leading Rolls Nation with a long-term vision to make high-quality, youth-friendly kathi rolls available nationwide.
+                                    Rolls Nation owner Uday Deep leads the brand with a long-term vision to make high-quality,
+                                    youth-friendly kathi rolls available nationwide.
                                 </p>
                             </div>
                         </div>
@@ -282,7 +285,7 @@ export default function AboutPage() {
                             <div className="mt-10 pt-6 border-t border-zinc-800">
                                 <p className="text-white font-bold text-lg">Warm regards,</p>
                                 <p className="text-yellow-500 font-black text-2xl mt-1">Uday Deep</p>
-                                <p className="text-zinc-400">Founder &amp; CEO, Rolls Nation</p>
+                                <p className="text-zinc-400">Founder, Owner &amp; CEO, Rolls Nation</p>
                             </div>
                         </div>
                     </div>

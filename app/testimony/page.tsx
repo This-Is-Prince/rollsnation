@@ -5,6 +5,7 @@ import { ArrowRight, Quote } from 'lucide-react';
 import PaginatedGallerySection from '@/components/gallery/PaginatedGallerySection';
 import { WHATSAPP_LINK } from '@/src/config/site';
 import { buildPageMetadata } from '@/src/lib/seo';
+import { testimonySeoKeywords } from '@/src/lib/brandSeoKeywords';
 import { getTestimonyGalleryData } from '@/src/lib/testimony-data';
 
 const founderNote = [
@@ -22,6 +23,7 @@ export async function generateMetadata(): Promise<Metadata> {
     title: 'Testimony | Rolls Nation Press Coverage & Founder Note',
     description:
       'Explore Rolls Nation press highlights and founder message. See how vision, creativity, and operational quality have built a strong food brand journey.',
+    keywords: testimonySeoKeywords,
     openGraph: {
       title: 'Rolls Nation Testimony',
       description: 'Media highlights and founder note from Rolls Nation.',
@@ -49,8 +51,8 @@ export default async function TestimonyPage() {
       <section className="border-b border-zinc-800 bg-zinc-950 py-20">
         <div className="container mx-auto px-6">
           <PaginatedGallerySection
-            sectionLabel="Press &amp; Media Section"
-            heading="Rolls Nation in the Media"
+            sectionLabel="Rolls Nation Press &amp; Media Section"
+            heading="Brand Journey - Making Headlines"
             description="Discover the latest media coverage and press highlights of Rolls Nation, showcasing our journey, milestones, and the impact we've made in the food industry. Stay updated with our story as we continue to roll forward."
             items={pressMediaItems}
             itemsPerPage={8}
@@ -61,8 +63,8 @@ export default async function TestimonyPage() {
       <section className="border-b border-zinc-800 py-20">
         <div className="container mx-auto px-6">
           <PaginatedGallerySection
-            sectionLabel="Interiors Section"
-            heading="Rolls Nation Interiors"
+            sectionLabel="Interior Gallery"
+            heading="Rolls Nation Ambience - A Visual Tour"
             description="A visual tour of our restaurant interiors across different cities, showcasing the unique ambiance and design elements that define the Rolls Nation experience."
             items={rnInteriorItems}
             itemsPerPage={8}
@@ -78,7 +80,7 @@ export default async function TestimonyPage() {
           <div className="mb-12">
             <p className="text-sm font-bold uppercase tracking-[0.2em] text-yellow-500 md:text-base">Vision, Creativity &amp; Vivacity.</p>
             <h2 className="mt-3 max-w-5xl text-4xl font-black uppercase leading-tight text-white md:text-6xl">
-              Rolls Nation - Founder Note
+              Rolls Nation - Founder &amp; CEO Note
             </h2>
             <div className="mt-5 h-1 w-36 rounded-full bg-yellow-500" />
           </div>
@@ -109,7 +111,7 @@ export default async function TestimonyPage() {
               <div className="relative mx-auto h-96 w-full max-w-sm">
                 <Image
                   src="/pic.png"
-                  alt="Mr. Uday Deep, Founder and Owner of Rolls Nation"
+                  alt="Mr. Uday Deep, Founder, Owner and CEO of Rolls Nation"
                   fill
                   className="object-contain"
                   sizes="(max-width: 1024px) 100vw, 40vw"
@@ -117,7 +119,7 @@ export default async function TestimonyPage() {
               </div>
               <div className="mt-4 border-t border-zinc-700 pt-4 text-center">
                 <p className="text-2xl font-black uppercase text-white">Uday Deep</p>
-                <p className="mt-1 text-sm font-bold uppercase tracking-wider text-yellow-500">Founder / Owner</p>
+                <p className="mt-1 text-sm font-bold uppercase tracking-wider text-yellow-500">Founder / Owner / CEO</p>
                 <p className="mt-1 text-sm uppercase tracking-wide text-zinc-300">Rolls Nation</p>
               </div>
             </aside>

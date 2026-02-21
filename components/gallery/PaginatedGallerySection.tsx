@@ -45,8 +45,8 @@ export default function PaginatedGallerySection({
   return (
     <div>
       <header className="mb-10 text-center">
-        <p className="text-xs font-bold uppercase tracking-[0.28em] text-yellow-500">{sectionLabel}</p>
-        <h2 className="mt-4 text-3xl font-black uppercase md:text-5xl">{heading}</h2>
+        <p className="text-4xl font-bold uppercase text-yellow-500">{sectionLabel}</p>
+        <h2 className="mt-4 text-2xl font-black uppercase md:text-3xl">{heading}</h2>
         <div className="mx-auto mt-5 h-1 w-44 rounded-full bg-yellow-500" />
         <p className="mx-auto mt-5 max-w-3xl text-zinc-300 md:text-lg">{description}</p>
       </header>

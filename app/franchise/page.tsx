@@ -8,6 +8,7 @@ import { absoluteUrl } from '@/src/lib/site-url.server';
 import {
   actionKeywords,
   benefitKeywords,
+  franchiseCampaignKeywords,
   locationKeywords,
   moneyKeywords,
   primaryKeywords,
@@ -89,7 +90,7 @@ const supportItems = [
 
 const franchiseFaqs = [
   {
-    question: 'What is the kathi roll franchise cost in India?',
+    question: 'What is the kathi roll franchise price and cost in India?',
     answer:
       'Cost depends on selected format and location. Rolls Nation offers multiple investment models with transparent setup and franchise fee guidance.',
   },
@@ -108,6 +109,16 @@ const franchiseFaqs = [
     answer:
       'Yes. Compact formats are designed for lower investment and faster payback where location and operations are optimized.',
   },
+  {
+    question: 'Can I start a food franchise under 10 lakh with Rolls Nation?',
+    answer:
+      'Yes. Our Model A starts at INR 9 lacs, making it a low investment food franchise option with strong support and scalable operations.',
+  },
+  {
+    question: 'Is Rolls Nation considered among top 10 best kathi roll franchise options in India?',
+    answer:
+      'Rolls Nation is widely preferred as a leading roll franchise in India due to product quality, brand recall, and franchisee-focused support.',
+  },
 ];
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -116,7 +127,14 @@ export async function generateMetadata(): Promise<Metadata> {
     title: 'Franchise | Rolls Nation - Best Food Franchise Opportunity',
     description:
       'Own a Rolls Nation kathi roll franchise in India with low investment options, high ROI, FOCO/FOFO operations, and complete setup support.',
-    keywords: [...primaryKeywords, ...moneyKeywords.slice(0, 10), ...actionKeywords.slice(0, 8), ...benefitKeywords.slice(0, 8), ...locationKeywords.slice(0, 6)],
+    keywords: [
+      ...primaryKeywords,
+      ...moneyKeywords.slice(0, 10),
+      ...actionKeywords.slice(0, 8),
+      ...benefitKeywords.slice(0, 8),
+      ...locationKeywords.slice(0, 8),
+      ...franchiseCampaignKeywords,
+    ],
     openGraph: {
       title: 'Rolls Nation Franchise Models',
       description:
@@ -298,7 +316,7 @@ export default async function FranchisePage() {
         <div className="container relative z-10 mx-auto px-6 py-20 md:py-28">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-10">
             <div className="max-w-4xl md:max-w-2xl">
-              <p className="mb-4 text-base font-bold uppercase tracking-[0.22em] text-yellow-500 md:text-lg">Best Food Franchise</p>
+              <p className="mb-4 text-base font-bold uppercase tracking-[0.22em] text-yellow-500 md:text-lg">Best Fast Food Franchise</p>
               <p className="mb-6 text-2xl font-black uppercase text-white md:text-4xl">Rolls Nation</p>
               <h1 className="text-5xl font-black uppercase italic leading-[0.95] text-white md:text-7xl">
                 Own a <br />
@@ -307,7 +325,9 @@ export default async function FranchisePage() {
               <p className="mt-5 text-sm font-bold uppercase tracking-[0.18em] text-zinc-300">Be Your Own Boss</p>
               <p className="mt-6 max-w-3xl border-l-4 border-yellow-500 pl-5 text-base leading-relaxed text-zinc-300 md:text-lg">
                 Join hands with Rolls Nation, now doing the most profitable business made easy for everyone who needs to start
-                their own dream restaurant with easy investment and innovative business model.
+                their own dream restaurant with easy investment and innovative business model. Trusted as a leading roll
+                franchise in India, we offer low investment food franchise formats, including a food franchise under 10 lakh
+                entry model.
               </p>
 
               <div className="mt-10 flex flex-wrap gap-4">

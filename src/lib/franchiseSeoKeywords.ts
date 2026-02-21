@@ -134,6 +134,30 @@ export const broaderAttractorKeywords = [
   'franchise india rolls',
 ];
 
+export const franchiseCampaignKeywords = [
+  'roll nation franchise',
+  'roll nation chandigarh franchise',
+  'food franchise in punjab',
+  'best roll franchise in india',
+  'leading roll franchise in india',
+  'kathi roll franchise price',
+  'best roll franchise',
+  'food franchise under 10 lakh',
+  'best fast food franchise',
+  'low investment food franchise',
+  "india's number 1 franchise",
+  'indias number 1 franchise',
+  'top 10 best kathi roll franchise',
+  'profitable food franchise',
+  'high margin franchise',
+  'food franchise',
+  'fast food franchise',
+  'fast food frnachise',
+  'roll franchise',
+  'rolls franchise',
+  'business idea',
+];
+
 export const allFranchiseSeoKeywords = [
   ...new Set([
     ...primaryKeywords,
@@ -145,5 +169,6 @@ export const allFranchiseSeoKeywords = [
     ...longTailKeywords,
     ...hindiAndHinglishKeywords,
     ...broaderAttractorKeywords,
+    ...franchiseCampaignKeywords,
   ]),
 ];

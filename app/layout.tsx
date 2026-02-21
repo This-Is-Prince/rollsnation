@@ -8,10 +8,6 @@ import Footer from "@/components/Footer";
 import { Analytics, GoogleAnalyticsScripts } from "@/components/Analytics";
 import {
   allFranchiseSeoKeywords,
-  broaderAttractorKeywords,
-  locationKeywords,
-  moneyKeywords,
-  primaryKeywords,
 } from "@/src/lib/franchiseSeoKeywords";
 import { absoluteUrl, getSiteOrigin } from "@/src/lib/site-url.server";
 import { PRIMARY_PHONE, SOCIAL_LINKS } from "@/src/config/site";
@@ -40,14 +36,7 @@ export async function generateMetadata(): Promise<Metadata> {
     alternates: {
       canonical: '/',
     },
-    keywords: [
-      ...primaryKeywords,
-      ...moneyKeywords,
-      ...locationKeywords,
-      ...broaderAttractorKeywords,
-      "Rolls Nation",
-      "best fast food franchise",
-    ],
+    keywords: allFranchiseSeoKeywords,
     authors: [{ name: "Rolls Nation" }],
     creator: "Rolls Nation",
     publisher: "Rolls Nation",
