@@ -5,6 +5,7 @@ import {
   WHATSAPP_LINK,
   type SocialPlatform,
 } from "@/src/config/site";
+import { isAnalyticsRuntimeEnabled } from "@/src/lib/analytics-env";
 
 declare global {
   interface Window {
@@ -28,7 +29,11 @@ type TrackingContext = {
 };
 
 function canTrack() {
-  return typeof window !== "undefined" && typeof window.gtag === "function";
+  return (
+    isAnalyticsRuntimeEnabled() &&
+    typeof window !== "undefined" &&
+    typeof window.gtag === "function"
+  );
 }
 
 function cleanParams(params: EventParams): Record<string, EventPrimitive> {

@@ -9,6 +9,7 @@ import {
   getToken,
   AppCheck 
 } from 'firebase/app-check';
+import { isAnalyticsRuntimeEnabled } from '@/src/lib/analytics-env';
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -25,7 +26,10 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 const storage = getStorage(app);
 
-const analytics = typeof window !== 'undefined' ? getAnalytics(app) : undefined;
+const analytics =
+  typeof window !== 'undefined' && isAnalyticsRuntimeEnabled()
+    ? getAnalytics(app)
+    : undefined;
 let appCheck: AppCheck | undefined;
 
 export const initFirebaseAppCheck = () => {

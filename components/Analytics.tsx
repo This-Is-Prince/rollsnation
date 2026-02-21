@@ -4,6 +4,10 @@ import { useEffect, Suspense } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
 import { SUPPORTED_SITE_DOMAINS } from "@/src/config/site";
 import {
+  isAnalyticsProductionEnv,
+  isAnalyticsRuntimeEnabled,
+} from "@/src/lib/analytics-env";
+import {
   inferSocialPlatformFromUrl,
   trackEmailClick,
   trackFranchiseWhatsAppClick,
@@ -26,6 +30,7 @@ declare global {
 }
 
 const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID;
+const IS_ANALYTICS_PRODUCTION_ENV = isAnalyticsProductionEnv();
 
 const linkerDomains = JSON.stringify([
   ...SUPPORTED_SITE_DOMAINS,
@@ -37,7 +42,12 @@ function AnalyticsInner() {
   const searchParams = useSearchParams();
 
   useEffect(() => {
-    if (!GA_MEASUREMENT_ID || typeof window.gtag !== "function") {
+    if (
+      !IS_ANALYTICS_PRODUCTION_ENV ||
+      !isAnalyticsRuntimeEnabled() ||
+      !GA_MEASUREMENT_ID ||
+      typeof window.gtag !== "function"
+    ) {
       return;
     }
 
@@ -47,7 +57,12 @@ function AnalyticsInner() {
   }, []);
 
   useEffect(() => {
-    if (!GA_MEASUREMENT_ID || typeof window.gtag !== "function") {
+    if (
+      !IS_ANALYTICS_PRODUCTION_ENV ||
+      !isAnalyticsRuntimeEnabled() ||
+      !GA_MEASUREMENT_ID ||
+      typeof window.gtag !== "function"
+    ) {
       return;
     }
 
@@ -58,7 +73,12 @@ function AnalyticsInner() {
   }, [pathname, searchParams]);
 
   useEffect(() => {
-    if (!GA_MEASUREMENT_ID || typeof window.gtag !== "function") {
+    if (
+      !IS_ANALYTICS_PRODUCTION_ENV ||
+      !isAnalyticsRuntimeEnabled() ||
+      !GA_MEASUREMENT_ID ||
+      typeof window.gtag !== "function"
+    ) {
       return;
     }
 
@@ -128,7 +148,7 @@ function AnalyticsInner() {
 }
 
 export function GoogleAnalyticsScripts() {
-  if (!GA_MEASUREMENT_ID) return null;
+  if (!IS_ANALYTICS_PRODUCTION_ENV || !GA_MEASUREMENT_ID) return null;
 
   return (
     <>
@@ -142,14 +162,16 @@ export function GoogleAnalyticsScripts() {
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', '${GA_MEASUREMENT_ID}', {
-              send_page_view: false,
-              anonymize_ip: true,
-              linker: {
-                domains: ${linkerDomains},
-                accept_incoming: true,
-              },
-            });
+            if (!['localhost', '127.0.0.1', '::1', '[::1]'].includes(window.location.hostname)) {
+              gtag('config', '${GA_MEASUREMENT_ID}', {
+                send_page_view: false,
+                anonymize_ip: true,
+                linker: {
+                  domains: ${linkerDomains},
+                  accept_incoming: true,
+                },
+              });
+            }
           `,
         }}
       />
@@ -158,7 +180,7 @@ export function GoogleAnalyticsScripts() {
 }
 
 export function Analytics() {
-  if (!GA_MEASUREMENT_ID) return null;
+  if (!IS_ANALYTICS_PRODUCTION_ENV || !GA_MEASUREMENT_ID) return null;
 
   return (
     <Suspense fallback={null}>
