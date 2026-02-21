@@ -9,7 +9,7 @@ export const SUPPORTED_SITE_DOMAINS = [
 
 export type SupportedSiteDomain = (typeof SUPPORTED_SITE_DOMAINS)[number];
 
-export const PRIMARY_SITE_DOMAIN: SupportedSiteDomain = "rollsnationindia.in";
+export const PRIMARY_SITE_DOMAIN: SupportedSiteDomain = "rollsnation.in";
 
 export const DEFAULT_SITE_ORIGIN =
   process.env.NEXT_PUBLIC_SITE_URL ?? `https://${PRIMARY_SITE_DOMAIN}`;

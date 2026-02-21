@@ -37,6 +37,9 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     description:
       "Kathi roll franchise in India with low investment models, strong ROI, and full setup support. Explore kathi roll franchise cost, Punjab opportunities, and step-by-step application guidance.",
+    alternates: {
+      canonical: '/',
+    },
     keywords: [
       ...primaryKeywords,
       ...moneyKeywords,
