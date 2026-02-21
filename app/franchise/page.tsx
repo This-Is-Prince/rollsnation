@@ -126,6 +126,122 @@ export async function generateMetadata(): Promise<Metadata> {
   });
 }
 
+function ZeroRoyaltyBadge({ className = '', size = 280 }: { className?: string; size?: number }) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 280 280"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={`drop-shadow-2xl ${className}`}
+    >
+      <circle
+        cx="140"
+        cy="140"
+        r="135"
+        stroke="#EAB308"
+        strokeWidth="2"
+        strokeDasharray="8 4"
+        fill="none"
+        opacity="0.6"
+      />
+      <circle
+        cx="140"
+        cy="140"
+        r="125"
+        fill="url(#badgeGradient)"
+        stroke="#EAB308"
+        strokeWidth="3"
+      />
+      <circle
+        cx="140"
+        cy="140"
+        r="110"
+        fill="none"
+        stroke="#EAB308"
+        strokeWidth="1.5"
+        opacity="0.5"
+      />
+      <circle
+        cx="140"
+        cy="140"
+        r="100"
+        fill="none"
+        stroke="#EAB308"
+        strokeWidth="2"
+        opacity="0.3"
+      />
+      
+      <path d="M70 80 L72 85 L77 85 L73 88 L75 93 L70 90 L65 93 L67 88 L63 85 L68 85 Z" fill="#EAB308" opacity="0.8"/>
+      <path d="M210 80 L212 85 L217 85 L213 88 L215 93 L210 90 L205 93 L207 88 L203 85 L208 85 Z" fill="#EAB308" opacity="0.8"/>
+      <path d="M70 200 L72 205 L77 205 L73 208 L75 213 L70 210 L65 213 L67 208 L63 205 L68 205 Z" fill="#EAB308" opacity="0.8"/>
+      <path d="M210 200 L212 205 L217 205 L213 208 L215 213 L210 210 L205 213 L207 208 L203 205 L208 205 Z" fill="#EAB308" opacity="0.8"/>
+      
+      <text
+        x="140"
+        y="115"
+        textAnchor="middle"
+        fill="#EAB308"
+        fontSize="42"
+        fontWeight="900"
+        fontFamily="system-ui, -apple-system, sans-serif"
+        letterSpacing="0.05em"
+      >
+        ZERO
+      </text>
+      
+      <text
+        x="140"
+        y="150"
+        textAnchor="middle"
+        fill="#FFFFFF"
+        fontSize="24"
+        fontWeight="800"
+        fontFamily="system-ui, -apple-system, sans-serif"
+        letterSpacing="0.15em"
+      >
+        ROYALTY
+      </text>
+      
+      <line x1="80" y1="165" x2="200" y2="165" stroke="#EAB308" strokeWidth="2" opacity="0.6"/>
+      
+      <text
+        x="140"
+        y="190"
+        textAnchor="middle"
+        fill="#A1A1AA"
+        fontSize="16"
+        fontWeight="700"
+        fontFamily="system-ui, -apple-system, sans-serif"
+        letterSpacing="0.12em"
+      >
+        TILL BREAK EVEN
+      </text>
+      
+      <text
+        x="140"
+        y="215"
+        textAnchor="middle"
+        fill="#EAB308"
+        fontSize="11"
+        fontWeight="600"
+        fontFamily="system-ui, -apple-system, sans-serif"
+        letterSpacing="0.05em"
+      >
+        ★ ROLLS NATION ★
+      </text>
+      
+      <defs>
+        <radialGradient id="badgeGradient" cx="50%" cy="30%" r="70%" fx="50%" fy="30%">
+          <stop offset="0%" stopColor="#1C1917" />
+          <stop offset="100%" stopColor="#0A0A0A" />
+        </radialGradient>
+      </defs>
+    </svg>
+  );
+}
+
 export default async function FranchisePage() {
   const [homeUrl, franchiseUrl] = await Promise.all([
     absoluteUrl('/'),
@@ -180,35 +296,45 @@ export default async function FranchisePage() {
         <div className="absolute inset-0 bg-linear-to-b from-black/20 via-black/90 to-black" />
 
         <div className="container relative z-10 mx-auto px-6 py-20 md:py-28">
-          <div className="max-w-4xl">
-            <p className="mb-4 text-base font-bold uppercase tracking-[0.22em] text-yellow-500 md:text-lg">Best Food Franchise</p>
-            <p className="mb-6 text-2xl font-black uppercase text-white md:text-4xl">Rolls Nation</p>
-            <h1 className="text-5xl font-black uppercase italic leading-[0.95] text-white md:text-7xl">
-              Own a <br />
-              <span className="text-yellow-500">Franchise</span>
-            </h1>
-            <p className="mt-5 text-sm font-bold uppercase tracking-[0.18em] text-zinc-300">Be Your Own Boss</p>
-            <p className="mt-6 max-w-3xl border-l-4 border-yellow-500 pl-5 text-base leading-relaxed text-zinc-300 md:text-lg">
-              Join hands with Rolls Nation, now doing the most profitable business made easy for everyone who needs to start
-              their own dream restaurant with easy investment and innovative business model.
-            </p>
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-10">
+            <div className="max-w-4xl md:max-w-2xl">
+              <p className="mb-4 text-base font-bold uppercase tracking-[0.22em] text-yellow-500 md:text-lg">Best Food Franchise</p>
+              <p className="mb-6 text-2xl font-black uppercase text-white md:text-4xl">Rolls Nation</p>
+              <h1 className="text-5xl font-black uppercase italic leading-[0.95] text-white md:text-7xl">
+                Own a <br />
+                <span className="text-yellow-500">Franchise</span>
+              </h1>
+              <p className="mt-5 text-sm font-bold uppercase tracking-[0.18em] text-zinc-300">Be Your Own Boss</p>
+              <p className="mt-6 max-w-3xl border-l-4 border-yellow-500 pl-5 text-base leading-relaxed text-zinc-300 md:text-lg">
+                Join hands with Rolls Nation, now doing the most profitable business made easy for everyone who needs to start
+                their own dream restaurant with easy investment and innovative business model.
+              </p>
 
-            <div className="mt-10 flex flex-wrap gap-4">
-              <a
-                href={WHATSAPP_LINK}
-                data-analytics-source="franchise_hero_whatsapp"
-                className="inline-flex items-center gap-2 rounded-full bg-yellow-500 px-8 py-4 text-sm font-bold uppercase tracking-wide text-black transition-all hover:scale-105 hover:bg-yellow-400"
-              >
-                Get Franchise
-                <ArrowRight className="h-4 w-4" />
-              </a>
-              <a
-                href={PRIMARY_PHONE_HREF}
-                data-analytics-source="franchise_hero_call"
-                className="inline-flex items-center gap-2 rounded-full border border-zinc-700 px-8 py-4 text-sm font-bold uppercase tracking-wide text-white transition-colors hover:border-yellow-500 hover:text-yellow-500"
-              >
-                Call {PRIMARY_PHONE_LABEL}
-              </a>
+              <div className="mt-10 flex flex-wrap gap-4">
+                <a
+                  href={WHATSAPP_LINK}
+                  data-analytics-source="franchise_hero_whatsapp"
+                  className="inline-flex items-center gap-2 rounded-full bg-yellow-500 px-8 py-4 text-sm font-bold uppercase tracking-wide text-black transition-all hover:scale-105 hover:bg-yellow-400"
+                >
+                  Get Franchise
+                  <ArrowRight className="h-4 w-4" />
+                </a>
+                <a
+                  href={PRIMARY_PHONE_HREF}
+                  data-analytics-source="franchise_hero_call"
+                  className="inline-flex items-center gap-2 rounded-full border border-zinc-700 px-8 py-4 text-sm font-bold uppercase tracking-wide text-white transition-colors hover:border-yellow-500 hover:text-yellow-500"
+                >
+                  Call {PRIMARY_PHONE_LABEL}
+                </a>
+              </div>
+            </div>
+
+            <div className="hidden md:flex shrink-0 items-center justify-center">
+              <ZeroRoyaltyBadge size={280} />
+            </div>
+            
+            <div className="flex md:hidden items-center justify-center mt-4">
+              <ZeroRoyaltyBadge size={220} />
             </div>
           </div>
         </div>
