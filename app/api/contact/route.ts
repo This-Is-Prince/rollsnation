@@ -51,9 +51,11 @@ export async function POST(request: Request) {
         { status: 400 }
       );
     }
-    const { name, phone, email, subject, message, trackingContext } = body;
+    const { name, phone, email, city, subject, message, trackingContext } = body;
+    const normalizedCity =
+      typeof city === 'string' ? city.trim() : '';
 
-    if (!name || !phone || !email || !message) {
+    if (!name || !phone || !email || !normalizedCity || !message) {
       return NextResponse.json(
         { error: 'Missing required fields.' },
         { status: 400 }
@@ -75,6 +77,7 @@ export async function POST(request: Request) {
       name,
       phone,
       email,
+      city: normalizedCity,
       subject: subject || 'General Inquiry',
       message,
       createdAt: new Date(),

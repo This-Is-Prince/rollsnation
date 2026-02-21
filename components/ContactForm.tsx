@@ -37,6 +37,7 @@ const formSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
   phone: z.string().min(10, "Please enter a valid phone number"),
   email: z.string().email("Please enter a valid email address"),
+  city: z.string().trim().min(2, "Please enter your city"),
   subject: z.string().min(1, "Please select a subject"),
   message: z.string().min(10, "Message must be at least 10 characters"),
 });
@@ -52,6 +53,7 @@ export default function ContactForm() {
       name: "",
       phone: "",
       email: "",
+      city: "",
       subject: "",
       message: "",
     },
@@ -192,27 +194,50 @@ export default function ContactForm() {
             />
           </div>
 
-          <FormField
-            control={form.control}
-            name="email"
-            disabled={isSubmitting}
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel className="text-xs text-yellow-500 font-bold uppercase tracking-wider">
-                  Email Address
-                </FormLabel>
-                <FormControl>
-                  <Input
-                    placeholder="john@example.com"
-                    type="email"
-                    className="bg-black border-zinc-800 focus-visible:ring-yellow-500 text-white h-14"
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage className="text-red-400" />
-              </FormItem>
-            )}
-          />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <FormField
+              control={form.control}
+              name="email"
+              disabled={isSubmitting}
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="text-xs text-yellow-500 font-bold uppercase tracking-wider">
+                    Email Address
+                  </FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder="john@example.com"
+                      type="email"
+                      className="bg-black border-zinc-800 focus-visible:ring-yellow-500 text-white h-14"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage className="text-red-400" />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="city"
+              disabled={isSubmitting}
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="text-xs text-yellow-500 font-bold uppercase tracking-wider">
+                    Preferred City
+                  </FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder="e.g. Chandigarh"
+                      className="bg-black border-zinc-800 focus-visible:ring-yellow-500 text-white h-14"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage className="text-red-400" />
+                </FormItem>
+              )}
+            />
+          </div>
 
           <FormField
             control={form.control}

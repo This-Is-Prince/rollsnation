@@ -27,7 +27,7 @@ export default function PrivacyPage() {
         <div className="space-y-10 text-zinc-300 leading-relaxed">
           <section>
             <h2 className="text-2xl font-bold text-white mb-4">Information We Collect</h2>
-            <p>We collect information you voluntarily provide when filling out our contact form, including your name, phone number, email address, subject, and message. We do not collect any payment information.</p>
+            <p>We collect information you voluntarily provide when filling out our contact form, including your name, phone number, email address, city, subject, and message. We do not collect any payment information.</p>
           </section>
 
           <section>
