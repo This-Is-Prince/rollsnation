@@ -7,7 +7,9 @@ const publicDir = path.join(__dirname, 'public');
 
 const foldersToProcess = [
   'FRANCHISE OWNERS ROLLS NATION',
-  'RN FOOD IMAGES'
+  'RN FOOD IMAGES',
+  'MEDIA NEWS COVERAGE',
+  'RN INTERIORS',
 ];
 
 async function processDirectory(dirPath) {

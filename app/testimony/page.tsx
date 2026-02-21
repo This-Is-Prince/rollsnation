@@ -1,60 +1,11 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import type { Metadata } from 'next';
-import { ArrowRight, Newspaper, Quote } from 'lucide-react';
+import { ArrowRight, Quote } from 'lucide-react';
+import PaginatedGallerySection from '@/components/gallery/PaginatedGallerySection';
 import { WHATSAPP_LINK } from '@/src/config/site';
 import { buildPageMetadata } from '@/src/lib/seo';
-
-const pressCoverage = [
-  {
-    publication: 'Refugee Message',
-    headline: 'Rolls Nation Opens Its First Outlet in Banur',
-    excerpt:
-      'The opening marked a strong start for fast-food lovers, with fresh rolls, wraps, and kebab specials drawing strong response from customers.',
-  },
-  {
-    publication: 'The Northlines',
-    headline: 'Rolls Nation enters Punjab growth corridor',
-    excerpt:
-      'The brand expansion focuses on quality, affordability, and quick service, creating a strong model for rapid franchise growth.',
-  },
-  {
-    publication: 'Punjab Express',
-    headline: 'Rolls Nation unveils first outlet in Banur',
-    excerpt:
-      'With a focus on hygiene and authentic taste, the outlet launch highlights the brand commitment to consistent food quality.',
-  },
-  {
-    publication: 'Punjab Times',
-    headline: 'Rolls Nation scales with customer-first strategy',
-    excerpt:
-      'From neighborhood stores to high-footfall markets, the brand strategy blends menu innovation with disciplined operations.',
-  },
-  {
-    publication: 'Regional Feature',
-    headline: 'Fast food QSR model sees strong traction',
-    excerpt:
-      'The takeaway and dine-in mix has improved repeat orders and local customer retention in expanding markets.',
-  },
-  {
-    publication: 'Business Update',
-    headline: 'Rolls and wraps category gains momentum',
-    excerpt:
-      'Consumers looking for quick, flavorful, and value-driven meals are driving demand in tier-1 and tier-2 locations.',
-  },
-  {
-    publication: 'Industry Bulletin',
-    headline: 'Structured support powers outlet consistency',
-    excerpt:
-      'Training systems, procurement discipline, and standard operating processes continue to support sustainable growth.',
-  },
-  {
-    publication: 'Hindi Coverage',
-    headline: 'Rolls Nation expansion and customer trust',
-    excerpt:
-      'The brand built strong recognition through balanced taste, quality, and service while expanding into new markets.',
-  },
-];
+import { getTestimonyGalleryData } from '@/src/lib/testimony-data';
 
 const founderNote = [
   'In this realm of an impetuously changing world, survival in business must never be taken for granted. Our vision of the future must be lucid to allow anticipation of and response to new opportunities.',
@@ -79,55 +30,43 @@ export async function generateMetadata(): Promise<Metadata> {
   });
 }
 
-export default function TestimonyPage() {
+export default async function TestimonyPage() {
+  const { pressMediaItems, rnInteriorItems } = await getTestimonyGalleryData();
+
   return (
     <div className="min-h-screen bg-black pt-20 text-white">
       <section className="relative overflow-hidden border-b border-zinc-800 py-20">
         <div className="absolute inset-0 bg-[url('/rollsnation.jpeg')] bg-cover bg-center opacity-12" />
         <div className="absolute inset-0 bg-linear-to-b from-zinc-900/40 to-black" />
         <div className="container relative z-10 mx-auto px-6 text-center">
-          <h1 className="text-5xl font-black uppercase text-white md:text-7xl">Testimony</h1>
-          <h2 className="mt-4 text-2xl font-black uppercase text-zinc-200 md:text-4xl">Rolling Into The Limelight</h2>
+          <h2 className="mt-4 text-3xl font-black uppercase text-yellow-500 md:text-4xl">Rolling Into The Limelight</h2>
           <p className="mx-auto mt-5 max-w-3xl text-zinc-300">
             A growing collection of media mentions, market momentum, and the story behind the people building Rolls Nation.
           </p>
         </div>
       </section>
 
+      <section className="border-b border-zinc-800 bg-zinc-950 py-20">
+        <div className="container mx-auto px-6">
+          <PaginatedGallerySection
+            sectionLabel="Press &amp; Media Section"
+            heading="Rolls Nation in the Media"
+            description="Discover the latest media coverage and press highlights of Rolls Nation, showcasing our journey, milestones, and the impact we've made in the food industry. Stay updated with our story as we continue to roll forward."
+            items={pressMediaItems}
+            itemsPerPage={8}
+          />
+        </div>
+      </section>
+
       <section className="border-b border-zinc-800 py-20">
         <div className="container mx-auto px-6">
-          <div className="mb-12 text-center">
-            <h2 className="text-3xl font-black uppercase text-white md:text-5xl">Press &amp; Media Highlights</h2>
-            <div className="mx-auto mt-5 h-1 w-44 rounded-full bg-yellow-500" />
-          </div>
-
-          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-            {pressCoverage.map((item, idx) => (
-              <article
-                key={`${item.publication}-${idx}`}
-                className="overflow-hidden rounded-2xl border border-zinc-200/70 bg-white text-black shadow-xl shadow-black/30"
-              >
-                <div className="relative h-36 border-b border-zinc-200">
-                  <Image
-                    src="/rollsnation.jpeg"
-                    alt={`${item.publication} coverage for Rolls Nation`}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, 25vw"
-                  />
-                  <div className="absolute inset-0 bg-black/40" />
-                  <div className="absolute left-4 top-4 inline-flex items-center gap-2 rounded-full bg-white px-3 py-1 text-xs font-bold uppercase tracking-wide text-zinc-900">
-                    <Newspaper className="h-3.5 w-3.5" />
-                    {item.publication}
-                  </div>
-                </div>
-                <div className="p-5">
-                  <h3 className="text-lg font-black leading-tight">{item.headline}</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-zinc-700">{item.excerpt}</p>
-                </div>
-              </article>
-            ))}
-          </div>
+          <PaginatedGallerySection
+            sectionLabel="Interiors Section"
+            heading="Rolls Nation Interiors"
+            description="A visual tour of our restaurant interiors across different cities, showcasing the unique ambiance and design elements that define the Rolls Nation experience."
+            items={rnInteriorItems}
+            itemsPerPage={8}
+          />
         </div>
       </section>
 
