@@ -3,18 +3,9 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 import { ArrowRight, Camera, Sparkles } from 'lucide-react';
 import { WHATSAPP_LINK } from '@/src/config/site';
+import PaginatedGallerySection from '@/components/gallery/PaginatedGallerySection';
+import { foodGalleryItems, franchiseOwnerGalleryItems } from '@/src/lib/gallery-data';
 import { buildPageMetadata } from '@/src/lib/seo';
-
-const galleryItems = [
-  { src: '/rollsnation.jpeg', alt: 'Rolls Nation seating zone and wall branding', title: 'Modern Dining Space' },
-  { src: '/staffs/staff-1.jpg', alt: 'Rolls Nation interior lifestyle frame', title: 'Interior Styling' },
-  { src: '/staffs/staff-2.jpg', alt: 'Rolls Nation customer waiting area', title: 'Service Corner' },
-  { src: '/staffs/staff-3.jpg', alt: 'Rolls Nation themed decor wall and seating', title: 'Signature Decor' },
-  { src: '/staffs/staff-4.jpg', alt: 'Rolls Nation counter and menu display', title: 'Counter Experience' },
-  { src: '/staffs/staff-5.jpg', alt: 'Rolls Nation event and launch moments', title: 'Opening Moments' },
-  { src: '/chef.png', alt: 'Rolls Nation chef with signature roll', title: 'Chef Spotlight' },
-  { src: '/pic.png', alt: 'Rolls Nation founder portrait', title: 'Founder Presence' },
-];
 
 export async function generateMetadata(): Promise<Metadata> {
   return buildPageMetadata({
@@ -46,32 +37,25 @@ export default function GalleryPage() {
         </div>
       </section>
 
-      <section className="bg-zinc-100 py-20 text-zinc-900">
+      <section className="bg-linear-to-b from-zinc-950 via-black to-zinc-950 py-20 text-white">
         <div className="container mx-auto px-6">
-          <div className="mb-12 text-center">
-            <h2 className="text-3xl font-black uppercase md:text-5xl">Our Visual Story</h2>
-            <div className="mx-auto mt-5 h-1 w-44 rounded-full bg-yellow-500" />
-          </div>
+          <PaginatedGallerySection
+            sectionLabel="Food Section"
+            heading="Food Highlights"
+            description="A curated food gallery from RN FOOD IMAGES with editable title and description metadata."
+            items={foodGalleryItems}
+            itemsPerPage={6}
+          />
 
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {galleryItems.map((item) => (
-              <article key={item.alt} className="group overflow-hidden rounded-3xl border border-zinc-300 bg-white shadow-lg">
-                <div className="relative h-64 overflow-hidden">
-                  <Image
-                    src={item.src}
-                    alt={item.alt}
-                    fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-110"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
-                  />
-                  <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/0 to-black/0" />
-                  <div className="absolute bottom-3 left-3 rounded-full bg-black/70 px-3 py-1">
-                    <p className="text-xs font-bold uppercase tracking-wide text-white">{item.title}</p>
-                  </div>
-                </div>
-              </article>
-            ))}
-          </div>
+          <div className="pt-16 h-px" />
+
+          <PaginatedGallerySection
+            sectionLabel="Franchise Owner Section"
+            heading="Recent Franchise Owners"
+            description="Owner spotlights pulled from FRANCHISE OWNERS ROLLS NATION filenames, with city-based titles and pagination."
+            items={franchiseOwnerGalleryItems}
+            itemsPerPage={6}
+          />
         </div>
       </section>
 
