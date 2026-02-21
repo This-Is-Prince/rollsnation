@@ -3,6 +3,7 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 import { buildPageMetadata } from '@/src/lib/seo';
 import { PRIMARY_PHONE_HREF, WHATSAPP_LINK } from '@/src/config/site';
+import InstagramFeedSection from '@/components/InstagramFeedSection';
 import { 
   Utensils, 
   Store, 
@@ -202,6 +203,8 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      <InstagramFeedSection />
 
       <section className="py-24 px-6 relative overflow-hidden">
         <div className="container mx-auto max-w-6xl">
