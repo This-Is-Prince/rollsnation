@@ -14,6 +14,7 @@ import {
   TrendingUp,
   Star
 } from 'lucide-react';
+import FranchiseLaunchModal from '@/components/FranchiseLaunchModal';
 
 export async function generateMetadata(): Promise<Metadata> {
   return buildPageMetadata({
@@ -35,6 +36,7 @@ export async function generateMetadata(): Promise<Metadata> {
 export default function HomePage() {
   return (
     <div className="min-h-screen bg-black text-white selection:bg-yellow-500 selection:text-black">
+      <FranchiseLaunchModal />
       
       <section className="relative min-h-screen flex items-center pt-20 overflow-hidden">
         <div className="absolute inset-0 z-0">

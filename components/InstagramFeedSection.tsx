@@ -26,11 +26,13 @@ function truncateCaption(caption: string, maxLength = 110) {
     return FALLBACK_CAPTION;
   }
 
-  if (normalizedCaption.length <= maxLength) {
+  const codePoints = Array.from(normalizedCaption);
+
+  if (codePoints.length <= maxLength) {
     return normalizedCaption;
   }
 
-  return `${normalizedCaption.slice(0, maxLength - 1).trimEnd()}...`;
+  return `${codePoints.slice(0, maxLength - 1).join("").trimEnd()}...`;
 }
 
 function mediaTypeLabel(mediaType: InstagramMediaType) {
@@ -78,7 +80,9 @@ export default async function InstagramFeedSection() {
               <RefreshCcw className="h-3.5 w-3.5" />
               {isLiveFeed ? "Live feed active" : "Showing latest highlights"}
             </p>
-            <p className="mt-2 text-xs text-zinc-500">Updated: {toShortDate(feed.updatedAt)}</p>
+            <p className="mt-2 text-xs text-zinc-500" suppressHydrationWarning>
+              Updated: {toShortDate(feed.updatedAt)}
+            </p>
           </div>
         </div>
 
@@ -120,11 +124,14 @@ export default async function InstagramFeedSection() {
                   </div>
 
                   <div className="space-y-3 p-5">
-                    <p className="line-clamp-3 text-sm leading-relaxed text-zinc-300">
+                    <p
+                      className="line-clamp-3 text-sm leading-relaxed text-zinc-300"
+                      suppressHydrationWarning
+                    >
                       {truncateCaption(item.caption)}
                     </p>
                     <div className="flex items-center justify-between text-xs font-semibold uppercase tracking-wider text-zinc-500">
-                      <span>{toShortDate(item.timestamp)}</span>
+                      <span suppressHydrationWarning>{toShortDate(item.timestamp)}</span>
                       <span className="inline-flex items-center gap-1 text-yellow-500">
                         View
                         <ArrowUpRight className="h-3.5 w-3.5" />
