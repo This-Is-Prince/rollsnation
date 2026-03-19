@@ -3,6 +3,7 @@ import "server-only";
 import { cache } from "react";
 import { headers } from "next/headers";
 import {
+  CANONICAL_SITE_ORIGIN,
   DEFAULT_SITE_ORIGIN,
   PRIMARY_SITE_DOMAIN,
   SUPPORTED_SITE_DOMAINS,
@@ -52,6 +53,14 @@ function getDefaultHost() {
     return new URL(DEFAULT_SITE_ORIGIN).host.toLowerCase();
   } catch {
     return PRIMARY_SITE_DOMAIN;
+  }
+}
+
+function getCanonicalOrigin() {
+  try {
+    return new URL(CANONICAL_SITE_ORIGIN).origin;
+  } catch {
+    return `https://www.${PRIMARY_SITE_DOMAIN}`;
   }
 }
 
@@ -107,8 +116,7 @@ export async function getRequestSite() {
 }
 
 export async function getSiteOrigin() {
-  const site = await getRequestSiteContext();
-  return site.origin;
+  return getCanonicalOrigin();
 }
 
 export async function getSiteHost() {
@@ -117,6 +125,6 @@ export async function getSiteHost() {
 }
 
 export async function absoluteUrl(pathname = "/") {
-  const origin = await getSiteOrigin();
+  const origin = getCanonicalOrigin();
   return new URL(normalizePath(pathname), origin).toString();
 }

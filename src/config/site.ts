@@ -11,8 +11,13 @@ export type SupportedSiteDomain = (typeof SUPPORTED_SITE_DOMAINS)[number];
 
 export const PRIMARY_SITE_DOMAIN: SupportedSiteDomain = "rollsnation.in";
 
-export const DEFAULT_SITE_ORIGIN =
-  process.env.NEXT_PUBLIC_SITE_URL ?? `https://${PRIMARY_SITE_DOMAIN}`;
+export const CANONICAL_SITE_HOST =
+  process.env.NEXT_PUBLIC_CANONICAL_HOST ?? `www.${PRIMARY_SITE_DOMAIN}`;
+
+export const CANONICAL_SITE_ORIGIN =
+  process.env.NEXT_PUBLIC_SITE_URL ?? `https://${CANONICAL_SITE_HOST}`;
+
+export const DEFAULT_SITE_ORIGIN = CANONICAL_SITE_ORIGIN;
 
 export const CONTACT_EMAIL = "info@rollsnation.in";
 export const CONTACT_EMAIL_HREF = `mailto:${CONTACT_EMAIL}`;
