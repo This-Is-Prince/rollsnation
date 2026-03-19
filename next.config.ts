@@ -1,25 +1,5 @@
 import type { NextConfig } from "next";
-import {
-  CANONICAL_SITE_ORIGIN,
-  SUPPORTED_SITE_DOMAINS,
-} from "./src/config/site";
-
-const canonicalSiteOrigin = (() => {
-  try {
-    return new URL(CANONICAL_SITE_ORIGIN).origin;
-  } catch {
-    return "https://www.rollsnation.in";
-  }
-})();
-
-const canonicalSiteHost = new URL(canonicalSiteOrigin).host.toLowerCase();
-
-const alternateHosts = [
-  ...SUPPORTED_SITE_DOMAINS,
-  ...SUPPORTED_SITE_DOMAINS.map((domain) => `www.${domain}`),
-].filter((host, index, hosts) => {
-  return hosts.indexOf(host) === index && host !== canonicalSiteHost;
-});
+import { SUPPORTED_SITE_DOMAINS } from "./src/config/site";
 
 const nextConfig: NextConfig = {
   compress: true,
@@ -86,10 +66,10 @@ const nextConfig: NextConfig = {
   },
 
   async redirects() {
-    return alternateHosts.map((host) => ({
+    return SUPPORTED_SITE_DOMAINS.map((domain) => ({
       source: "/:path*",
-      has: [{ type: "host", value: host }],
-      destination: `${canonicalSiteOrigin}/:path*`,
+      has: [{ type: "host", value: domain }],
+      destination: `https://www.${domain}/:path*`,
       permanent: true,
     }));
   },
@@ -103,11 +83,6 @@ const nextConfig: NextConfig = {
             key: "Cache-Control",
             value: "public, max-age=31536000, immutable",
           },
-        ],
-      },
-      {
-        source: "/_next/static/media/(.*\\.(?:woff|woff2))",
-        headers: [
           {
             key: "X-Robots-Tag",
             value: "noindex",

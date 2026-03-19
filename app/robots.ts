@@ -1,8 +1,8 @@
 import { MetadataRoute } from "next";
-import { getSiteOrigin } from "@/src/lib/site-url.server";
+import { getSiteHost, getSiteOrigin } from "@/src/lib/site-url.server";
 
 export default async function robots(): Promise<MetadataRoute.Robots> {
-  const baseUrl = await getSiteOrigin();
+  const [baseUrl, siteHost] = await Promise.all([getSiteOrigin(), getSiteHost()]);
 
   return {
     rules: [
@@ -17,7 +17,7 @@ export default async function robots(): Promise<MetadataRoute.Robots> {
         disallow: ["/private/", "/admin/", "/api/"],
       },
     ],
-    host: baseUrl,
+    host: siteHost,
     sitemap: `${baseUrl}/sitemap.xml`,
   };
 }
